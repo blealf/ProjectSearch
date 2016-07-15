@@ -1,0 +1,56 @@
+<hr>
+<div class="show_staff_projects">
+
+  <%= link_to 'All Projects', projects_path, class: 'nav-menu' %>
+
+  <%-# Checks if the staff is logged in-%>
+  <% if logged_in? %>
+      <% if current_staff.present? %>
+         <%= link_to "Create new project", new_project_path, class: 'nav-menu' %> 
+      <% end %>
+  
+  <div>
+    <p class="staff_welcome"> Welcome </p>
+    <p class="staff_welcome"><%= @staff.first_name %></p>
+    <p class="staff_welcome"><%= @staff.last_name %></p>
+    <p class="staff_welcome"><%= @staff.email %></p>
+  </div>
+  <% end %>
+
+  <%-# -%>
+
+  <% if @staff.projects.any? %>
+    <%-# This counts the number of projects by the staff-%>
+    <h3> Projects: (<%= @staff.projects.count %>)</h3>
+    <div class="manage_staff_projects">
+    
+    <%-# Each project is printed out using the ruby .each do loop method -%>
+    <% @projects.each do |project| %>
+      
+      <div class="staff_project">
+      
+      <% if !logged_in? %>
+        <div class="staff_owner"> Staff: <%= link_to project.staff.first_name, project.staff %></div>
+      <% end %>
+
+      <div class="staff_project_title"><%=link_to project.title, project, id: 'staff_project_title' %> </div>
+
+      <div class="staff_project_timestamp">
+        uploaded <%= time_ago_in_words(project.created_at) %> ago. </div>
+
+      <% if logged_in? %>
+        <div class="manage_control">
+          <%= link_to 'Edit', edit_project_path(project), id: 'edit-project' %>
+
+          <%= link_to 'Delete', project, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%>
+
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+  
+  </div>
+  <% end %>
+
+</div>

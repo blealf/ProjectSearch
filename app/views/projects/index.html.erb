@@ -1,0 +1,17 @@
+
+<div class="search-results">
+    <%= render 'filter' %>
+    <div class="search-float both">
+    	<div class="search-cover">
+    		<%= form_for projects_path, role: 'search', method: :get do |f|  %>
+				<%= text_field_tag :q, params[:q], class: 'search-bar', placeholder: 'Enter search keyword here' %>
+				<%= button_tag "Search", name: nil, class: "search-n-btn" %>
+			<% end %>
+		</div>
+        
+        <%= render 'project' %>
+    </div>
+
+</div>
+
+

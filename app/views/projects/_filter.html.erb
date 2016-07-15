@@ -1,0 +1,97 @@
+<div class="filters both">
+
+
+<!--=============================================================================-->
+			<!--THE IDEAS FOR THE FILTERS CODE WAS GOTTEN FROM: -->
+<!--http://stackoverflow.com/questions/7031987/rails-sunspot-facets-and-filtering
+						ACCESSED Fri Jul 15 at 1:00pm-->
+<!--=============================================================================-->
+
+
+
+<!--===================================================================-->
+	  <h3>Courses</h3>
+	  <ul>
+	  <%# Fileter for the course names %>
+	  <% for row in @search.facet(:coursename).rows  do %>
+	      <li>
+
+	        <% if params[:couname].blank? %>	          
+	        <%= link_to row.value, projects_path(
+	          		:couname => row.value,
+	          		:fname => (params[:fname] unless params[:fname].blank?), 
+	          		:catname => (params[:catname] unless params[:catname].blank?))%>
+	          	(<%= row.count%>)
+	        <% else %>
+	          <strong><%= row.value %></strong> (<%= link_to "remove", projects_path(
+	          		:couname => nil,
+	          		:fname => (params[:fname] unless params[:fname].blank?), 
+	          		:catname => (params[:catname] unless params[:catname].blank?))%>
+	        <% end %>
+	      </li>
+
+	    <% end %>
+	  </ul>
+<!--===================================================================-->
+
+
+
+<!--===================================================================-->
+	  	<h3>Categories</h3>
+	  <ul>
+	  <%# Fileter for the categories name %>
+	  <% for row in @search.facet(:categoryname).rows  do %>
+	      
+	      <li>
+	        <% if params[:catname].blank? %>
+	          <%= link_to row.value, projects_path(
+	          		:catname => row.value,
+	          		:fname => (params[:fname] unless params[:fname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+	          	(<%= row.count%>)
+	        <% else %>
+	          <strong><%= row.value %></strong> (<%= link_to "remove", projects_path(
+	          		:catname => nil,
+	          		:fname => (params[:fname] unless params[:fname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+	        <% end %>
+	      </li>
+
+	    <% end %>
+	  </ul>
+<!--===================================================================-->
+
+
+
+<!--===================================================================-->
+	<h3>Staff</h3>
+	  <ul>
+	  <%# Fileter for the staff names %>
+	  <% for row in @search.facet(:fullname).rows  do %>
+	      
+	      <li>
+	        <% if params[:fname].blank? %>
+	          <%= link_to row.value, projects_path(
+	          		:fname => row.value,
+	          		:catname => (params[:catname] unless params[:catname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+	          	(<%= row.count%>)
+	          
+	        <% else %>
+	          <strong><%= row.value %></strong> 
+	          	<%= link_to "remove", projects_path(
+	          		:fname => nil,
+	          		:catname => (params[:catname] unless params[:catname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+	        <% end %>
+	      </li>
+
+	    <% end %>
+	  </ul>
+<!--===================================================================-->
+
+
+
+
+<!--===================================================================-->  
+</div>

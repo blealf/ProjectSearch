@@ -1,0 +1,24 @@
+<h1>Students#index</h1>
+<h1>student#index</h1>
+
+<% @students.each do |student| %>
+<table>
+	<tr>
+		<td><%= student.full_name %></td>
+	</tr>
+	<tr>
+		<td><%= student.email %></td>
+	</tr>
+	<tr>
+		<td><%= link_to 'Delete', student, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%></td>
+	</tr>
+
+</table>
+<%= link_to "Show", student %>
+<%= link_to "edit", edit_student_path(student) %>
+<% end %>
+<%= link_to "New student", new_student_path %> |
+<%= link_to "Signup", signup_path %> | <%= link_to "Login", login_path %>
+<p>Find me in app/views/student/index.html.erb</p>
+
+<p>Find me in app/views/students/index.html.erb</p>

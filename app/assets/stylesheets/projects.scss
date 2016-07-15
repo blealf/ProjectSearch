@@ -1,0 +1,538 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    background: #f6f1ed;
+    margin: auto;
+    width: 80%;
+    min-width: 480px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+header{
+    background-color:  #30231d ;
+    margin-top: 5px;
+    max-width: 100%;
+/*    height: 120px;*/
+    padding: 10px;
+    
+}
+
+img {
+    height: 40px;
+    width: 35px;
+    float:left;
+    border: 1px solid #6a5750;
+   }
+
+.site-title{
+    margin: auto;
+    width: 80%;
+}
+
+h1{
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Lora', serif;
+    
+}
+
+.head_title {
+    text-decoration: none;
+    color: #f6f1ed;
+}
+
+.nav-bar {
+    height: 35px;
+    background-color: #6a5750;
+    /*-moz-background-color: rgb(51, 204, 255);
+    -webkit-background-color: rgb(51, 204, 255);
+    -ms-background-color: rgb(51, 204, 255);*/
+    
+}
+
+
+.search-invitation {
+    margin: auto;
+    margin-top: 50px;
+    max-width: 800px;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Lora', serif;
+    border-radius: 10px;
+    border: 1px solid #6a5750;
+    box-shadow: 10px 10px 1px  #30231d ;
+}
+
+h3{
+    font-size: 2.5em;
+}
+
+
+
+/*
+=================================================================
+            *************  COMMENTED OUT  ************
+=================================================================
+.search-div {
+    width: 300px;
+    margin: auto;
+    padding: 3px;
+    margin-top: 80;
+    padding: 2px;
+}
+
+input {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 300px;
+    font-size: 15px;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 5px;
+    
+
+}
+
+input:hover {
+    border: solid 1px #6a5750;
+
+}
+
+
+.search-btn {
+    background-color: #6a5750;
+    margin: auto;
+    margin-left: 90px;
+    height: 50px;
+    width: 120px;
+    font-size: 20px;
+    color: white;
+    border: solid #ff4d4d 1px;
+    border-radius: 5px;
+    
+}
+
+=======================================================================
+
+=======================================================================
+*/
+
+
+
+/*
+=======================================================================
+Login, signup and new project
+=======================================================================
+*/
+.nav-menu-holder {
+    width: 100%
+}
+
+.nav-menu {
+    text-decoration: none;
+    background-color: #b5a397;
+    color: #30231d;
+    margin: 5px;
+    border: 1px solid #30231d;
+    border-radius: 3px;
+    font-family: 'Lora', serif;
+    font-weight: 900;
+    font-weight: 2;
+    padding: 2px;
+
+}
+
+#log-session {
+    float: right;
+}
+
+#portal_link{
+    float: left;
+}
+
+
+
+/*
+=======================================================================
+For elements on the search screeen (Homepage)
+=======================================================================
+*/
+.search-results{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 100%;
+/*    position: relative;*/
+}
+
+/*============Search in the search results page============*/
+
+.search-cover{
+    margin-left: 10px;
+    width: 100%;
+
+}
+
+.search-bar{
+    margin-bottom: 5px;
+    height: 15px;
+    width: 80%;
+    font-size: 0.8em;
+    padding: 5px;
+    border: solid 1px black;
+    border-radius: 1px;
+
+}
+
+.search-n-btn{
+    background-color: #6a5750;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    color: white;
+    margin-left: 10px;
+    height: 29px;
+    width: 15%;
+    border-radius: 3px;
+    font-size: 1em;
+    
+}
+
+
+
+/*===========Divider to hold the search results============*/
+
+.both {
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+.filters{
+    margin: auto;
+    margin-top: 10px;
+    width: 150px;
+    padding: 10px;
+    border-radius: 1px;
+    border: 1px solid #6a5750;
+    //box-shadow: 3px -3px 10px  #30231d ;
+}
+
+/* ======== .search-float Houses the divider for .search-results-content========== */
+
+.search-float {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 75%;
+}
+
+.search-results-content{
+    margin: auto;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    padding: 10px;
+    border-radius: 1px;
+    border: 1px solid #6a5750;
+    //box-shadow: 3px -3px 10px  #30231d ;
+    
+}
+
+.title{
+    margin-top: 7px;
+    padding: 5px;
+    width: 100%;
+}
+
+.title-link{
+    text-decoration: none;
+    color: black;
+}
+
+h3 {
+    font-family: "Verdana";
+    font-size: 1.4em;
+}
+
+.description{
+    margin-top: -30px;
+    padding: 5px;
+    text-align:justify;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10px;
+
+}
+
+.tags{
+
+}
+
+#tags{
+    background-color: #b5a397;
+    color: #30231d;
+    //margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    border: 1px solid  #30231d ;
+    padding: 2px;
+    display: inline-block;
+    font-size: 0.7em;
+    text-decoration: none;
+    
+}
+
+.tags_link{
+    text-decoration: none;
+    color: white;
+}
+
+a.tags_link:hover{
+    text-decoration: none;
+    color: red;
+    background-color: white;
+}
+
+
+.url {
+    background-color: #6a5750;
+    color: white;
+    height: 22px;
+    border-radius: 2px;
+    border: 1px solid  #30231d ;
+    //box-shadow: 3px 3px 5px  #30231d ;
+    float: right;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+/*
+===============================================================================
+        ERRORS
+===============================================================================
+*/
+.not_found{
+    color: blue;
+}
+
+.error-alert{
+    color: red;
+    font-weight: 900px;
+}
+
+#title_error{
+    margin-left: 10px;
+    min-width: 500px;
+    border-radius: 0px;
+    height: 20px;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    border: 2px solid red;
+}
+
+#description_error{
+    background: #ffcccc;
+    margin-left: 10px;
+    min-height: 300px;
+    min-width: 500px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    border: 2px solid red;
+    
+}
+
+/*============================================================================*/
+
+
+
+
+
+
+
+
+
+footer {
+    background-color:  #30231d ;
+    display: block;
+    margin-top: 30px;
+    width: 100%;
+    height: 80px;
+    //float: none;
+    clear: left;
+
+}
+
+
+
+/*
+=============================================================================
+                    SHOWING PROJECTS (onclick)
+=============================================================================*/
+.show_big_title {
+    color:black;
+    text-align: center;
+}
+
+#show_description {
+    text-align: justify;    
+}
+
+
+/*
+==============================================================================
+        FORM FOR CREATING AND EDITING PROJECTS
+==============================================================================
+
+******************************************************************************
+*/
+
+table {
+    border: collapse;
+}
+
+.new_edit_project {
+    padding: 10px;
+}
+
+.field_names{
+    vertical-align: top;    
+}
+
+#title_edit, #url_edit{
+    margin-left: 10px;
+    min-width: 500px;
+    border-radius: 0px;
+    height: 20px;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+
+}
+
+#description_edit, #tags_edit {
+    background: white;
+    margin-left: 10px;
+    min-height: 300px;
+    min-width: 500px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+}
+
+#tags_edit{
+    min-height: 50px;
+}
+
+td {
+    width: 100px;
+}
+
+.save_div{
+    margin: auto;
+    width: 200px;
+    }
+
+#save_button {
+    background-color: #00b300;
+    margin: auto;
+    margin-left: 10px;
+    color: white;
+    width: 100px;
+    font-family: 'Lora', serif;
+    font-size: 1em;
+    font-weight: 900;
+    padding: 5px;
+    border: 3px outset green;
+}
+
+.check_box{
+    border: 1px solid black;
+}
+
+.categories{
+    margin: 10px;
+    height: 30px;
+    width: 150px;
+}
+
+.courses_field{
+    margin-left: 10px;
+    overflow-y: scroll; 
+    height: 200px;
+    border: 1px solid #30231d;
+    padding: 10px;
+}
+
+
+/*=====================================================================
+=======================================================================*/
+@media only screen and(max-width: 480px) and (orientation: portrait){
+    
+    body {
+        width: 100%
+}
+    #description_edit {
+    min-height: 200px;
+    min-width: 200px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

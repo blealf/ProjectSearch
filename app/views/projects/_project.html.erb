@@ -1,0 +1,45 @@
+<% if !@projects.empty? %>
+<% @projects.each do |p| %>
+
+	
+	<div class="search-results-content">
+	    <h3 class="title"> <%= link_to p.title, p, class: "title-link"%> </h3>
+	    <div class="description"><%= p.description %> </div>
+	    <div class="tags"> <% tags = p.tags.split(",") %> Tags: 
+	    <% tags.each do |t| %>
+	        
+
+	   
+	        <div id="tags"><%# t %>
+	        	<% tg = t.to_s %>
+	        	<%= link_to tg, {:controller => "projects", :q => t.to_s},  :class => 'tags_link'%>
+	        
+	        </div> 
+	    <% end %>
+	    </div>
+	</div>
+<% end %>
+<% elsif @projects.empty? %>
+	<div class="search-results-content">
+	    <p class="not_found"> Search for <strong style="color:red"><em><%= params[:q].to_s %> </em></strong> not found </p>  
+	    <p> Try with another query keyword </p> 
+	    <p> or search by the following:</p>
+
+
+	    <div> 
+	    <ul>
+	    <% @categories.each do |c| %>
+	        <div id="suggestions"><%# t %>
+	        	<% tg = c.category_name.to_s%>
+	        	<li><%= link_to tg, {:controller => "projects", :q => tg},  :class => 'suggestions_links'%></li>
+	        
+	        </div> 
+	        <% end %>
+	        </ul>
+	</div>
+
+		<p>Optionally, you can view <%= link_to "All Projects", {:controller => "projects", :q => ""},  :class => 'suggestions_links'%></p>
+<% end %>
+
+
+ <%= will_paginate(@search.results) %>

@@ -1,0 +1,12 @@
+
+<% @projects.each do |project| %>
+<li id="project-<%= project.id %>">
+  <span class="staff"><%= link_to project.staff.first_name, project.staff %></span>
+  <span class="content"><%= project.title %></span>
+  <span class="content"><%= project.description %></span>
+  <span class="content"><%= project.tags %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(project.created_at) %> ago.
+  </span>
+</li>
+<% end %>

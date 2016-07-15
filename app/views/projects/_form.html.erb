@@ -1,0 +1,63 @@
+
+<%= form_for(@project) do |project| %>
+	  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@project.errors.count, "error") %> stopped this project from being saved:</h3>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table class="new_edit_project">
+	
+
+	<% messagearray = @project.errors.full_messages.to_s %>
+
+	<tr>
+		
+		<td class="field_names"><%= project.label :title %></td>
+		<%if messagearray.include? 'Title' %>
+			<td><%= project.text_field :title, id: 'title_error' %></td>
+		<% else %>
+			<td><%= project.text_field :title, id: 'title_edit' %></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label :description %></td>
+		<%if messagearray.include? 'Description' %>
+			<td><%= project.text_area :description, id: 'description_error'%></td>
+		<% else %>
+			<td><%= project.text_area :description, id: 'description_edit'%></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label :tags %></td>
+		<td><%= project.text_area :tags, id: 'tags_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label "Link to more description" %> </td>
+		<td><%= project.text_field :url, id: 'url_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label :category_id%> <br></td>
+		<td><%= project.select :category_id, @categories.collect {|c| [c.category_name, c.id]}, {:include_blank => "Select Category"}, class: 'categories' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label "Courses"%> </td>
+		<td> <div class="courses_field"> <%= project.collection_check_boxes :course_ids, Course.all, :id, :course_name do |c| %>
+			<div>
+		      <%= c.check_box class: 'check_box'%>
+		      <%= c.label %>
+    		</div>
+  		<% end %>
+  		</div>
+		</td>
+	</tr>
+
+
+</table>
+<div class="save_div"><%= project.submit 'Save', id: 'save_button' %></div>
+<% end %>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Studentproject</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <img src="/assets/dmu.png">
+        <h1> <%= link_to 'De Monfort Project Search', projects_path, class: 'head_title' %></h1>
+      </div>
+    </header>
+    <nav class="nav-bar">
+      <%= render 'menu' %>
+    </nav>
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+
+    <%= yield %>
+    <%#= debug(params) if Rails.env.development? %>
+    <footer> 
+      
+    </footer>
+  </body>
+
+</html>

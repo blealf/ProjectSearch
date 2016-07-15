@@ -1,0 +1,7 @@
+<div>
+	<h1>courses#index</h1>
+	<% @courses.each do |c| %>
+		<%= link_to c.course_name, c %> <br>
+	<% end %>
+	<p>Find me in app/views/courses/index.html.erb</p>
+</div>

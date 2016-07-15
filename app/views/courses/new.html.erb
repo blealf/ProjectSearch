@@ -1,0 +1,9 @@
+<h1>Courses#new</h1>
+<div>
+	<%= form_for (@course) do |c| %>
+		<%= c.label :course_name %>
+		<%= c.text_field :course_name %>
+		<%= c.submit 'save' %>
+	<% end %>
+</div>
+<p>Find me in app/views/Courses/new.html.erb</p>

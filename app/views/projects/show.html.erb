@@ -1,0 +1,9 @@
+<h1>Projects#show</h1>
+<p class="show_project"><%= @project.title %></p>
+<p class="show_project"><%= simple_format(@project.description) %></p>
+<p class="show_project"><%= @project.tags %></p>
+<p class="show_project"><a href="<%= @project.url %>">Read More</a></p>
+
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'Edit', edit_project_path(@project) %>
+<p>Find me in app/views/projects/show.html.erb</p>
