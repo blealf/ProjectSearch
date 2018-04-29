@@ -1,23 +1,6 @@
-<hr>
 <div class="show_staff_projects">
 
-  <%= link_to 'All Projects', projects_path, class: 'nav-menu' %>
-
-  <%-# Checks if the staff is logged in-%>
-  <% if logged_in? %>
-      <% if current_staff.present? %>
-         <%= link_to "Create new project", new_project_path, class: 'nav-menu' %> 
-      <% end %>
-  
-  <div>
-    <p class="staff_welcome"> Welcome </p>
-    <p class="staff_welcome"><%= @staff.first_name %></p>
-    <p class="staff_welcome"><%= @staff.last_name %></p>
-    <p class="staff_welcome"><%= @staff.email %></p>
-  </div>
-  <% end %>
-
-  <%-# -%>
+<%= render 'menu' %>
 
   <% if @staff.projects.any? %>
     <%-# This counts the number of projects by the staff-%>
@@ -38,7 +21,8 @@
       <div class="staff_project_timestamp">
         uploaded <%= time_ago_in_words(project.created_at) %> ago. </div>
 
-      <% if logged_in? %>
+      <% if logged_in? && current_staff.present? %>
+
         <div class="manage_control">
           <%= link_to 'Edit', edit_project_path(project), id: 'edit-project' %>
 
@@ -54,3 +38,4 @@
   <% end %>
 
 </div>
+

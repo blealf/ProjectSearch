@@ -16,6 +16,16 @@
 #
 class StaffsController < ApplicationController
   
+  # Authorisation
+  # This uses the method from the projects helper to check if an admin is logged in before
+  # granting permission to veiw all and delete a staff from the database
+  before_action :admin_logged_in!, only: [:index, :destroy]
+
+  # Authorisation
+  # This uses the method from the projects helper to check if a staff is logged in before
+  # granting permission to edit or view a staff from the database
+  before_action :staff_logged_in!, only: [:edit, :update, :show]  
+
   # index 
   # @staffs: fetches all the staffs from the database for output
   def index
@@ -40,7 +50,7 @@ class StaffsController < ApplicationController
   	if @staff.save
       log_in @staff
   		redirect_to @staff
-  		flash[:success] = "Welcome to the Staff Portal"
+  		# flash[:success] = "Welcome to the Staff Portal"
   	else
   		render 'new'
   	end
@@ -57,7 +67,8 @@ class StaffsController < ApplicationController
   # 
   def show
   	set_staff
-  	@projects = set_staff.projects
+  	@projects = set_staff.projects.order(created_at: :desc)
+    @student_suggestions = ProjectSuggestion.where("staff_id = ?", current_staff.id)
     #@projects = Project.where(:staff_id => current_staff.id)
     #@projects = set_staff.projects.paginate(page: params[:page])
   end
@@ -76,7 +87,7 @@ class StaffsController < ApplicationController
   # if there is an error preventing update, it renders the edit form again
   def update
     @staff = Staff.find(params[:id])
-    if @staff.update_attributes(staff_params)
+    if @staff.update_attributes(staff_edit_params)
       redirect_to @staff
     else
       render 'edit'
@@ -95,16 +106,29 @@ class StaffsController < ApplicationController
   	redirect_to staffs_path
   end
 
+  # to show the supervisions for the staff
+  def supervision
+    @supervisions = Allocation.all.order(created_at: :desc).where(staff_id: current_staff.id)
+  end
+
   # This contains method private to this controller
   private
 
     # This private method indicates the parameters for the staff using the strong params
     def staff_params
-  	 params.require(:staff).permit(:first_name, :last_name, :email, :password, :password_confirmation, :office_tel)
+  	 params.require(:staff).permit(:first_name, :last_name, :email, :pnumber, :password, :password_confirmation, :office_tel, :profile, :department_id)
+    end
+
+    def staff_edit_params
+      params.require(:staff).permit(:email, :profile, :office_tel,)
     end
 
     # This private method fetches a staff from  the database by the id
     def set_staff
-  	 @staff = Staff.find(params[:id])
+  	 @staff = Staff.find(current_staff.id)
     end
 end
+
+
+
+

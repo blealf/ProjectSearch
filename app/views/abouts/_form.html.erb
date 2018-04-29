@@ -1,0 +1,60 @@
+<h2>Create About</h2>
+<%= form_for @about do |about| %>
+
+	 <% if @about.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@about.errors.count, "error") %> stopped this form from being saved:</h3>
+
+      <ul>
+      <% @about.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table class="new_edit_project">
+	
+
+	<% messagearray = @about.errors.full_messages.to_s %>
+
+	<tr>
+		
+		<td class="field_names"><%= about.label :title %></td>
+		<%if messagearray.include? 'Title' %>
+			<td><%= about.text_field :title, id: 'title_error' %></td>
+		<% else %>
+			<td><%= about.text_field :title, id: 'title_edit' %></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= about.label :description %></td>
+		<%if messagearray.include? 'Description' %>
+			<td><%= about.text_area :description, id: 'description_error'%></td>
+		<% else %>
+			<td><%= about.text_area :description, id: 'description_edit'%></td>
+		<% end %>
+	</tr>
+	
+</table>
+<div class="save_div"><%= about.submit 'Save', id: 'save_button' %></div>
+<% end %>
+<hr>
+<% if !@about.errors.any? %>
+<div  class="show_project">
+	<% @abouts.each do |c| %>
+
+		<h2 class="show_title"><%= c.title %></h2>
+		<p class="show_description"><%= simple_format(c.description, :class => 'show_description') %></p>
+		<div>
+			<div><%= link_to 'Edit', edit_about_path(c), id: 'edit-project', style: 'float:left'%></div>
+			<div><%= link_to 'Delete', c, method: :delete, id: 'delete-project'%></div>
+		</div>
+		<hr>
+	<% end %>
+</div>
+<% end %>
+	
+	 
+
+

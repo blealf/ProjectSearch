@@ -1,0 +1,7 @@
+<h1>Faculties#index</h1>
+<% @departments.each do |department| %>
+	<%= department.department_name %> 
+	<%= link_to 'Delete', department, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%><br>
+<% end %>
+
+<p>Find me in app/views/departments/index.html.erb</p>

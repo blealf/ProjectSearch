@@ -1,0 +1,11 @@
+
+<div class="search-bar">
+	<%= form_tag(projects_path, :method => "get") do %>
+		<div class="set-search-margin">
+		  <%= text_field_tag :q, params[:q], placeholder: "Search Projects", :class => 'search-input' %>
+		</div>
+		<div class="set-btn-margin">
+		  <%= submit_tag "Search", :class => 'search-btn-top' %>
+		</div>
+	<% end %>
+</div>

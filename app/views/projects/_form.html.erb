@@ -34,20 +34,19 @@
 		<% end %>
 	</tr>
 	<tr>
-		<td class="field_names"><%= project.label :tags %></td>
-		<td><%= project.text_area :tags, id: 'tags_edit' %></td>
+		<td class="field_names"><%= project.label "URL link to more description" %> <em style="color:brown"> (optional)</em></td>
+		<td> <p style="margin-left:10px;color:brown"> Enter link in the format <strong>"http://www.example.com" or "http://example.com"</strong></p>
+			<%= project.text_field :url, id: 'url_edit' %>
+		</td>
 	</tr>
-	<tr>
-		<td class="field_names"><%= project.label "Link to more description" %> </td>
-		<td><%= project.text_field :url, id: 'url_edit' %></td>
-	</tr>
+
 	<tr>
 		<td class="field_names"><%= project.label :category_id%> <br></td>
-		<td><%= project.select :category_id, @categories.collect {|c| [c.category_name, c.id]}, {:include_blank => "Select Category"}, class: 'categories' %></td>
+		<td><%= project.select :category_id, Category.all.order(:category_name).collect {|c| [c.category_name, c.id]}, {:include_blank => "Select Category"}, class: 'categories' %></td>
 	</tr>
 	<tr>
 		<td class="field_names"><%= project.label "Courses"%> </td>
-		<td> <div class="courses_field"> <%= project.collection_check_boxes :course_ids, Course.all, :id, :course_name do |c| %>
+		<td> <p style="margin-left:10px;margin-top:10px;color:brown;"> Select courses that the project would be suitable for</p> <div class="courses_field"> <%= project.collection_check_boxes :course_ids, current_staff.department.courses.all.order(:course_name), :id, :course_name do |c| %>
 			<div>
 		      <%= c.check_box class: 'check_box'%>
 		      <%= c.label %>
@@ -56,7 +55,40 @@
   		</div>
 		</td>
 	</tr>
+	<tr>
+		<td class="field_names"><%= project.label "level"%> <br></td>
+		<td><%= project.select :level_id, Level.all.collect {|c| [c.level_name, c.id]}, {:include_blank => "Select Level"}, class: 'categories' %></td>
+	</tr>
 
+	<tr>
+		<td class="field_names"><%= project.label "Tags"%> </td>
+		<td> <div class="courses_field"> <%= project.collection_check_boxes :project_tag_ids, ProjectTag.all.order(:tag_name), :id, :tag_name do |pt| %>
+			<div>
+		      <%= pt.check_box class: 'check_box'%>
+		      <%= pt.label %>
+    		</div>
+  		<% end %>
+  		</div>
+		</td>
+	</tr>
+
+	<tr style="margin-top:10px">
+		<td class="field_names"><%= project.label "Additional tags:" %></td>
+		<td> <p style="margin-left:10px;"> Enter additional tags below separated by commas </p></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><%= project.text_area :tags, id: 'tags_edit'  %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project.label "Make project visible in search"%> <br></td>
+		<td> 
+			<p style="margin-left:10px;"><%= project.label 'visible_true', 'Yes'%>
+			<%= project.radio_button :visible, true%> |
+			<%= project.label 'visible_false', 'No'%>
+			<%= project.radio_button :visible, false%></p>
+		</td>
+	</tr>
 
 </table>
 <div class="save_div"><%= project.submit 'Save', id: 'save_button' %></div>

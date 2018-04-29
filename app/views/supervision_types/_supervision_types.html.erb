@@ -1,0 +1,22 @@
+<p style="//margin-bottom: -300px">Number of supervision types: <%= @supervision_types.count %></p>
+<hr>
+<table>
+	<tr>
+		<th style="font-weight:bolder;font-size:1.5em">Types</th>
+	</tr>
+	<tr>
+		<td><hr></td>
+		<td><hr></td>
+		<td><hr></td>
+	</tr>
+</table>
+	
+<% @supervision_types.each do |p_t| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= p_t.name %></td>
+		<td><%= link_to 'Edit', edit_supervision_type_path(p_t), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', p_t, method: :delete, id: 'delete-project'%></td>
+	</tr>
+</table>
+<% end %>

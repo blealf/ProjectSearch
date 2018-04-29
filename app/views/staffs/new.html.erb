@@ -1,48 +1,61 @@
-<h1>Staff#new</h1>
+<h2>Staff signup form</h2>
 
 <%= form_for(@staff) do |staff| %>
 	  <% if @staff.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+      <h2 class="error-alert"><%= pluralize(@staff.errors.count, "error") %> prohibited this staff details from being saved:</h2>
 
       <ul>
       <% @staff.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="error-alert"><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 <table>
 	<tr>
-		<td><%= staff.label :first_name %></td>
-		<td><%= staff.text_field :first_name %></td>
+		<td class="field_names"><%= staff.label :first_name %></td>
+		<td><%= staff.text_field :first_name, id: 'title_edit' %></td>
+	</tr>
+	<tr style="margin-bottom:10px;">
+		<td class="field_names"><%= staff.label :last_name %></td>
+		<td><%= staff.text_field :last_name, id: 'title_edit' %></td>
 	</tr>
 	<tr>
-		<td><%= staff.label :last_name %></td>
-		<td><%= staff.text_field :last_name %></td>
+		<td class="field_names"><%= staff.label "pnumber or username" %></td>
+		<td> <%= staff.text_field :pnumber, id: 'title_edit'  %></td>
 	</tr>
 	<tr>
-		<td><%= staff.label :email %></td>
-		<td><%= staff.text_field :email %></td>
+		<td class="field_names"><%= staff.label :email %></td>
+		<td><%= staff.text_field :email, id: 'title_edit' %></td>
 	</tr>
 	<tr>
-		<td><%= staff.label :office_tel %></td>
-		<td><%= staff.text_field :office_tel %></td>
+		<td class="field_names"><%= staff.label :department_id%> <br></td>
+		<td><%= staff.select :department_id, Department.all.order(:department_name).collect {|c| [c.department_name, c.id]}, {:include_blank => "Select Department"}, class: 'categories' %></td>
 	</tr>
 	<tr>
-		<td><%= staff.label :password %></td>
-		<td><%= staff.password_field :password %></td>
+		<td class="field_names"><%= staff.label :office_tel %></td>
+		<td><%= staff.text_field :office_tel, id: 'title_edit' %></td>
 	</tr>
 	<tr>
-		<td><%= staff.label :password_confirmation %></td>
-		<td><%= staff.password_field :password_confirmation %></td>
+		<td class="field_names"><%= staff.label "Link to your online profile" %> </td>
+		<td> <p style="margin-left:10px;color:brown"> Enter link in the format <strong>"http://www.example.com" or "http://example.com"</strong></p>
+			<%= staff.text_field :profile, id: 'url_edit', placeholder: "e.g. http://www.example.com" %>
+		</td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= staff.label :password %></td>
+		<td><%= staff.password_field :password, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= staff.label :password_confirmation %></td>
+		<td><%= staff.password_field :password_confirmation, id: 'title_edit' %></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><%= staff.submit 'Save' %></td>
 	</tr>
-
 </table>
+<div class="save_div"><%= staff.submit 'Save', id: 'save_button' %></div>
 <% end %>
 
-<p>Find me in app/views/staff/new.html.erb</p>
+

@@ -7,16 +7,20 @@
 #
 class CategoriesController < ApplicationController
 
+  #authorize admin
+  before_action :admin_logged_in!, only: [:new, :edit, :update, :destroy]
+
   # index 
   # @categories: fetches all the categories from the database for output
   def index
-  	@categories = Category.all
+  	@categories = Category.all.order(:category_name)
   end
 
   # new
   # This creates a new instance of the Category class for variable @category
   def new
     @category = Category.new
+    @categories = Category.all.order(:category_name)
   end
 
   # create
@@ -31,7 +35,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category
+      redirect_to new_category_path
     else
       render 'new'
     end
@@ -47,7 +51,8 @@ class CategoriesController < ApplicationController
   # 
   def show
     @category = Category.find(params[:id])
-    @projects = @category.projects
+    @per_page = params[:per_page] || 10
+    @projects = @category.projects.paginate(page: params[:page] || 1, :per_page => @per_page)
   end
 
 
@@ -55,6 +60,7 @@ class CategoriesController < ApplicationController
   #  this fetches the existing category by the id for edit
   def edit
   	@category = Category.find(params[:id])
+    @categories = Category.all.order(:category_name)
   end
 
   # update
@@ -64,8 +70,8 @@ class CategoriesController < ApplicationController
   # if there is an error preventing update, it renders the edit form again
   def update
   	@category = Category.find(params[:id])
-  	if @category.update_attribute(category_params)
-  		redirect_to @category
+  	if @category.update_attributes(category_params)
+  		redirect_to new_category_path
   	else
   		render 'edit'
   	end
@@ -80,7 +86,7 @@ class CategoriesController < ApplicationController
 	def destroy
 		@category = Category.find(params[:id])
 		@category.destroy
-		redirect_to categories_path
+		redirect_to new_category_path
 	end
 
   # This contains method private to this controller

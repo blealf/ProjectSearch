@@ -1,0 +1,24 @@
+<p>Number of courses: <%= @courses.count %></p>
+<hr>
+<table>
+	<tr>
+		<th style="font-weight:bolder;font-size:1.5em">Courses</th>
+	</tr>
+	<tr>
+		<td><hr></td>
+		<td><hr></td>
+		<td><hr></td>
+	</tr>
+</table>
+<% @courses.each do |c| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= c.course_name %></td>
+		<td><%= link_to 'Edit', edit_course_path(c), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', c, method: :delete, id: 'delete-project'%></td>
+	</tr>
+</table>
+<% end %>
+<br>
+<%= will_paginate @courses, class: 'flickr_pagination'%>
+

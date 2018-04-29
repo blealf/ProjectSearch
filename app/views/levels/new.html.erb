@@ -1,0 +1,28 @@
+<h1 style="margin-bottom:40px;">Levels</h1>
+<%= form_for @level do |l| %>
+	<% if @level.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</h2>
+
+      <ul>
+      <% @level.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.4em"><%= l.label :level_name%></td>
+			<td><%= l.text_field :level_name, id: 'title_edit' %></td>
+			<td><%= l.submit "save", id: 'save_button' %></td>
+		</tr>
+
+	</table>
+	
+<% end %>
+<% if !@level.errors.any? %>
+ 	<%= render 'levels' %>
+<% end %>
+
+

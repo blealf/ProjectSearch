@@ -1,0 +1,22 @@
+<div style="margin-top:10px;"></div>
+<% if current_student.present? %>
+<%= link_to 'Back', project_suggestions_path, :class => 'back_button'  %>
+<% elsif current_staff.present? %>
+<%= link_to 'Back', studentsuggestions_path, :class => 'back_button'  %>
+<% end %>
+<div class="show_project_suggestion">
+	<h2 class="show_title"><%= @project_suggestion.title %></h2>
+	<p class="show_description"> <%= simple_format(@project_suggestion.description, :class => 'show_description', :style => "font-size:1.1em")%></p>
+	<hr>
+	<% if current_student.present? && !@project_suggestion.note.blank? %>
+		<p> <strong>Reply From:</strong> <%= @project_suggestion.staff.first_name.capitalize + " " + @project_suggestion.staff.last_name.capitalize + " " + " (" +@project_suggestion.staff.email + ")" %></p>
+		<p><%= simple_format(@project_suggestion.note, :style => "background:white;padding:10px") %></p>
+	<% end %>
+	<hr>
+</div>
+
+<% if current_student.present? %>
+<%= link_to 'Back', project_suggestions_path, :class => 'back_button'  %>
+<% elsif current_staff.present? %>
+<%= link_to 'Back', studentsuggestions_path, :class => 'back_button'  %>
+<% end %>

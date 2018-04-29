@@ -1,0 +1,46 @@
+
+<p>
+  <strong>Title:</strong>
+  <%#= @project_application.project.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%#= @project_application.project.description %>
+</p>
+ 
+
+ <% @project_application.applicationreplies.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.note %>
+    <%= comment.id %>
+  </p>
+<% end %>
+
+
+<h2>Add an applicationreplies:</h2>
+<%= form_for([@project_application, @project_application.applicationreplies.build]) do |f| %>
+
+
+  <p>
+    <%= f.label :note %><br>
+    <%= f.text_area :note %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<% person = "" %> 
+<% if current_staff.present? %>
+	<% person = current_staff.first_name.capitalize + " " + current_staff.last_name.capitalize%>
+<% elsif current_student.present?%>
+	<% person = current_student.full_name.titleize%>
+<% end%>
+<%= person %>

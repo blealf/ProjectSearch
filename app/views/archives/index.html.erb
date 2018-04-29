@@ -1,0 +1,41 @@
+
+<div>
+	<%= link_to 'Back', current_staff, :class => 'back_button' %>
+</div>
+
+	<h2 style="text-align:center;color:#cc3300">Student Applications</h2>
+Number of Applications: <%= @student_applications.count %>
+<hr>
+<% if !@student_applications.empty? %>
+<% @student_applications.each do |app| %>
+	<div style="font-size:1.0em;font-weight:bolder;color:#cc3300;padding-top:10px;"><%= time_ago_in_words(app.created_at) %> ago. Application from: <%= app.student.full_name.titleize + " (" + app.student.email + ")" %> for</div>
+	<%# if app.note.blank? %>
+	<%= link_to 'Delete', app, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project', :style => "float:right" %>
+	<%# else %>
+		<%#= link_to "Edit Reply", project_application_path(app), id: 'replied-button', :style => "float:right" %>
+	<%# end %>
+
+
+
+	<% p = app.project_id.to_i %>
+	<% Project.where(id: p).find_each do |p| %>
+
+			<div class="search-results-content">
+
+			    
+
+			    <h3 class="title"> <%= link_to p.title, p, class: "title-link"%> </h3>
+			    <div class="description"><%= p.description %> </div>
+			    	
+			    
+			</div>
+	<% end %>
+<% end %>
+<% else %>
+		<p>	No applications present</p>
+<% end %>
+<br>
+<hr>
+<div>
+	<%= link_to 'Back', current_staff, :class => 'back_button' %>
+</div>

@@ -1,0 +1,152 @@
+// Place all the styles related to the staff controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'https://fonts.googleapis.com/css?family=Courgette';
+@import 'https://fonts.googleapis.com/css?family=Tangerine';
+
+/* Staff projects*/
+.show_staff_projects {
+	//margin-top: 100px;
+	display: block;
+
+
+}
+
+.staff_portal_menu_div{
+	display: inline;
+}
+
+.staff_portal_menu, .staff_portal_menu2{
+	background: #FE9C9A;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	font-size: 1.2em;
+
+}
+.staff_portal_menu2{
+	background-color: green;
+}
+.staff_portal_menu:hover, .staff_portal_menu2:hover{
+	background: black;
+}
+
+.welcome{
+	display: inline;
+	margin-top: 10px;
+	float: right;
+}
+.welcome_message{
+	display: inline;
+	font-size: 1.1em;
+	font-family: 'Tangerine', cursive;
+}
+
+.manage_staff_projects{
+	background-color: white;
+	border: 1px solid black;
+	padding: 10px;
+	//min-width: 350px;
+
+}
+.staff_project{
+	background-color: #f6f1ed;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	height: 60px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 5px;
+	border: 1px solid black;
+	padding: 10px;
+
+}
+
+.staff_project_title{
+	width: 50%;
+	float: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+
+} 
+
+#staff_project_title{
+	color: #30231d;
+	font-size: 1.2em;
+	text-decoration: none;
+	padding: 5px;
+	font-weight: 800;
+}
+
+.staff_project_timestamp{
+	margin-left: 10px;
+	float: left;
+	font-size: 13px;
+	background-color: #f6f1ed;
+	padding: 5px;
+}
+
+#staff_project_timestamp{
+	font-size: 0.2em;
+}
+
+.manage_control{
+	float: right;
+}
+
+#edit-project{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+	background-color: #00b300;
+	color: white;
+	margin-top: 5px;
+	margin-left: 5px;
+	display: inline;
+	padding: 3px;
+	border-radius: 4px;
+	border: 3px outset green;
+	text-decoration: none;
+	//float: right;
+
+
+}
+
+
+#delete-project{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+	background-color: #ff3300;
+	color: white;
+	margin-top: 5px;
+	margin-left: 10px;
+	display: inline;
+	padding: 3px;
+	border-radius: 4px;
+	border: 3px outset red;
+	text-decoration: none;
+	//float: right;
+
+}
+
+#replied-button{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+	background-color: #0d3300;
+	color: white;
+	margin-top: 5px;
+	margin-left: 10px;
+	display: inline;
+	padding: 3px;
+	border-radius: 4px;
+	border: 3px outset red;
+	text-decoration: none;
+	//float: right;
+
+}

@@ -1,0 +1,2 @@
+module StudentsuggestionsHelper
+end

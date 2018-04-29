@@ -1,0 +1,8 @@
+
+<% @helps.each do |c| %>
+	<div  class="show_project">
+		<h2 class="show_title"><%= c.title %></h2>
+		<p class="show_description"><%= simple_format(c.description, :class => 'show_description') %></p>
+		<hr>
+	</div>
+<% end %>

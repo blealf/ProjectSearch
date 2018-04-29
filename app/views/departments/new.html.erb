@@ -1,0 +1,31 @@
+<h1 style="margin-bottom:40px;">Departments</h1>
+<%= form_for @department do |d| %>
+	  <% if @department.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@department.errors.count, "error") %> prohibited this department from being saved:</h2>
+
+      <ul>
+      <% @department.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.4em"><%= d.label :department_name%>:</td>
+			<td><%= d.text_field :department_name, id: 'title_edit' %></td>
+			<td><%= d.submit "save", id: 'save_button' %></td>
+		</tr>
+		<tr>
+			<td class="field_names", style="font-size:1.4em"><%= d.label :faculty_id%>:</td>
+			<td><%= d.select :faculty_id, Faculty.all.order(:faculty_name).collect {|f| [f.faculty_name, f.id]}, {:include_blank => "Select Faculty"}, class: 'categories'%></td>	 
+		</tr>
+
+	</table>
+	
+<% end %>
+
+<% if !@department.errors.any? %>
+	<%= render 'departments' %>
+<% end %>

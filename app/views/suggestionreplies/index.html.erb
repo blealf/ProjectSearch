@@ -1,0 +1,35 @@
+
+<p class="sug_indicator">Project Suggestion: <%= @project_suggestion.student.full_name.titleize + ", " + @project_suggestion.student.pnumber%></p>
+
+<h2 class="suggestion_title"> <%= @project_suggestion.title.titleize%></h2>
+
+<div class="desc_div">
+	<%= simple_format(@project_suggestion.description, class: "suggestion_description") %>
+</div>
+ 
+<%#= button_tag  "Replies", id: "comment_toggle" %>
+<p>
+<%#= link_to  "Replies", '#', id: "comment_toggle" %></p>
+
+<div class="comment_box_show" style="//display:none" >
+
+<hr>
+
+	<%#= render 'reply' %>
+	<div class="replies" style="overflow-y:scroll; overflow-x:hidden; height:400px;width:50%; padding: 10px;">
+		<%= render @project_suggestion.suggestionreplies %>
+	</div>
+	<% if current_student.present? || current_staff.present?%>
+	<div class="input_comment_div">
+
+		<%= form_for([@project_suggestion, @project_suggestion.suggestionreplies.build], remote: true) do |f| %>
+
+		  <p><%= f.label "send a reply" %> </p>
+		  <%= f.text_area :note, class: 'input_comment' %>
+		  <div class="save_div"><%= f.submit "Send", id: 'save_button' %></div>
+		<% end %>
+
+	</div>
+	<% end %>
+<%#= render @suggestionreplies %>
+</div>

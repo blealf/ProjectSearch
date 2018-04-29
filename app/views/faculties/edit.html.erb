@@ -1,0 +1,28 @@
+<h1 style="margin-bottom:40px;">Faculties</h1>
+<%= form_for @faculty do |f| %>
+	  <% if @faculty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@faculty.errors.count, "error") %> prohibited this project tag details from being saved:</h2>
+
+      <ul>
+      <% @faculty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.4em"><%= f.label :faculty_name%></td>
+			<td><%= f.text_field :faculty_name, id: 'title_edit' %></td>
+			<td><%= f.submit "save", id: 'save_button' %></td>
+		</tr>
+
+	</table>
+	
+<% end %>
+
+<% if !@faculty.errors.any? %>
+	<%= render 'faculties' %>
+<% end %>

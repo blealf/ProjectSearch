@@ -1,5 +1,22 @@
-<div class="filters both">
+<div class="filters both"> 
+<div style="margin-bottom: 50px;">
+	<% if current_student.present? %>
+		<%= link_to "My Shortlists (#{current_student.shortlists.count})", shortlists_path, :class => 'my_shortlists', :style => 'background-color: ED2F2F; color: black' %>
+	<% end %>
+</div>
 
+
+<h3> Filters </h3>
+<% all = params[:levname].to_s + "" +params[:fname].to_s + ""+params[:catname].to_s+ ""+params[:facname].to_s+ ""+params[:deptname].to_s+ ""+params[:couname].to_s%>
+<% if !all.blank?%>
+  <%= link_to "Clear all filters", projects_path(
+  		:fname => nil, 
+  		:catname => nil,
+  		:levname => nil,
+  		:facname => nil,
+  		:deptname => nil,
+  		:couname => nil), :class => 'clear_filters'%>
+<% end %>
 
 <!--=============================================================================-->
 			<!--THE IDEAS FOR THE FILTERS CODE WAS GOTTEN FROM: -->
@@ -9,88 +26,249 @@
 
 
 
+<hr>
 <!--===================================================================-->
-	  <h3>Courses</h3>
-	  <ul>
+	  
+	  <div class="indiv_filters">
+	  <h3>Level</h3>
 	  <%# Fileter for the course names %>
-	  <% for row in @search.facet(:coursename).rows  do %>
-	      <li>
-
-	        <% if params[:couname].blank? %>	          
-	        <%= link_to row.value, projects_path(
-	          		:couname => row.value,
+	  <% for row in @search.facet(:levelname).rows  do %>
+	      <div>
+	        <% if params[:levname].blank? %>	
+	        <% val =  "[" + row.count.to_s  + "]" + " " + row.value%>          
+	        <%= link_to val, projects_path(
+	          		:levname => row.value,
+	          		:facname => (params[:facname] unless params[:facname].blank?),
+	          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          		:couname => (params[:couname] unless params[:couname].blank?),
 	          		:fname => (params[:fname] unless params[:fname].blank?), 
-	          		:catname => (params[:catname] unless params[:catname].blank?))%>
-	          	(<%= row.count%>)
+	          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'filter-links'%>
+	          	
 	        <% else %>
-	          <strong><%= row.value %></strong> (<%= link_to "remove", projects_path(
-	          		:couname => nil,
-	          		:fname => (params[:fname] unless params[:fname].blank?), 
-	          		:catname => (params[:catname] unless params[:catname].blank?))%>
+		        <div class="sec_2_remove">
+		          	<div  class ='remove_filter'><strong><em><%= row.value %></em></strong></div> 
+		          	<%= link_to "X", projects_path(
+		          		:levname => nil,
+	          			:facname => (params[:facname] unless params[:facname].blank?),	          		
+	          			:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          			:couname => (params[:couname] unless params[:couname].blank?),
+		          		:fname => (params[:fname] unless params[:fname].blank?), 
+		          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'remove_filter_link' %>
+		        </div>
 	        <% end %>
-	      </li>
+
+	      </div>
 
 	    <% end %>
-	  </ul>
+	  </div>
 <!--===================================================================-->
-
-
-
+<div></div>
 <!--===================================================================-->
-	  	<h3>Categories</h3>
-	  <ul>
+	  <div class="indiv_filters">
+	  <h3>Categories</h3>
 	  <%# Fileter for the categories name %>
 	  <% for row in @search.facet(:categoryname).rows  do %>
 	      
-	      <li>
+	      <div>
 	        <% if params[:catname].blank? %>
-	          <%= link_to row.value, projects_path(
+	         <% val =  "[" + row.count.to_s  + "]" + " " +row.value.to_s%>          
+	        <%= link_to val, projects_path(
 	          		:catname => row.value,
-	          		:fname => (params[:fname] unless params[:fname].blank?), 
-	          		:couname => (params[:couname] unless params[:couname].blank?))%>
-	          	(<%= row.count%>)
+	          		:facname => (params[:facname] unless params[:facname].blank?),
+	          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          		:fname => (params[:fname] unless params[:fname].blank?),
+	          		:levname => (params[:levname] unless params[:levname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?)), :class => 'filter-links'%>
 	        <% else %>
-	          <strong><%= row.value %></strong> (<%= link_to "remove", projects_path(
+	          <div class="sec_2_remove">
+		          	<div  class ='remove_filter'><strong><em><%= row.value %></em></strong></div> 
+		          	<%= link_to "X", projects_path(
 	          		:catname => nil,
-	          		:fname => (params[:fname] unless params[:fname].blank?), 
-	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+	          		:fname => (params[:fname] unless params[:fname].blank?),
+	          		:facname => (params[:facname] unless params[:facname].blank?),
+	          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          		:levname => (params[:levname] unless params[:levname].blank?), 
+	          		:couname => (params[:couname] unless params[:couname].blank?)), :class => 'remove_filter_link' %>
+		        </div>
 	        <% end %>
-	      </li>
+	      </div>
 
 	    <% end %>
-	  </ul>
+	  </div>
 <!--===================================================================-->
-
-
-
+<div></div>
 <!--===================================================================-->
-	<h3>Staff</h3>
-	  <ul>
-	  <%# Fileter for the staff names %>
-	  <% for row in @search.facet(:fullname).rows  do %>
-	      
-	      <li>
-	        <% if params[:fname].blank? %>
-	          <%= link_to row.value, projects_path(
-	          		:fname => row.value,
-	          		:catname => (params[:catname] unless params[:catname].blank?), 
-	          		:couname => (params[:couname] unless params[:couname].blank?))%>
-	          	(<%= row.count%>)
-	          
+	  
+	  <div class="indiv_filters">
+	  <h3>Faculty</h3>
+	  <%# Fileter for the course names %>
+	  <% for row in @search.facet(:facultyname).rows  do %>
+	      <div>
+	        <% if params[:facname].blank? %>	
+	        <% val =  "[" + row.count.to_s  + "]" + " " + row.value.to_s.gsub(/[^a-zA-Z0-9\- ]/,"")%>          
+	        <%= link_to val, projects_path(
+	          		:facname => row.value,
+	          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          		:couname => (params[:couname] unless params[:couname].blank?),
+	          		:fname => (params[:fname] unless params[:fname].blank?),	          		
+	          		:levname => (params[:levname] unless params[:levname].blank?), 
+	          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'filter-links'%>
+	          	
 	        <% else %>
-	          <strong><%= row.value %></strong> 
-	          	<%= link_to "remove", projects_path(
-	          		:fname => nil,
-	          		:catname => (params[:catname] unless params[:catname].blank?), 
-	          		:couname => (params[:couname] unless params[:couname].blank?))%>
+		        <div class="sec_2_remove">
+		          	<div  class ='remove_filter'><strong><em><%= row.value.to_s.gsub(/[^a-zA-Z0-9\- ]/,"") %></em></strong></div> 
+		          	<%= link_to "X", projects_path(
+		          		:facname => nil,
+						:deptname => nil,
+	          			:couname => nil,
+		          		:fname => (params[:fname] unless params[:fname].blank?),
+		          		:levname => (params[:levname] unless params[:levname].blank?), 
+		          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'remove_filter_link' %>
+		        </div>
 	        <% end %>
-	      </li>
+
+	      </div>
 
 	    <% end %>
-	  </ul>
+	  </div>
+<!--===================================================================-->
+<div></div>
+<!--===================================================================-->
+	  
+	  <div class="indiv_filters">
+	  <%# Fileter for the course names %>
+	  <h3>Department</h3>
+	  
+	  <% if !params[:facname].blank? %>
+	  
+	  <% for row in @search.facet(:departmentname).rows  do %>
+	      <div>
+
+	        <% if params[:deptname].blank? %>	
+	        <% val =  "[" + row.count.to_s  + "]" + " " + row.value.to_s.gsub(/[^a-zA-Z0-9\- ]/,"")%>          
+	        <%= link_to val, projects_path(
+	          		:deptname => row.value,
+	          		:facname => (params[:facname] unless params[:facname].blank?),
+	          		:couname => (params[:couname] unless params[:couname].blank?),
+	          		:fname => (params[:fname] unless params[:fname].blank?),
+	          		:levname => (params[:levname] unless params[:levname].blank?), 
+	          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'filter-links'%>
+	          	
+	        <% else %>
+		        <div class="sec_2_remove">
+		          	<div  class ='remove_filter'><strong><em><%= row.value.to_s.gsub(/[^a-zA-Z0-9\- ]/,"") %></em></strong></div> 
+		          	<%= link_to "X", projects_path(
+		          		:deptname => nil,
+		          		:couname => nil,
+	          			:facname => (params[:facname] unless params[:facname].blank?),
+		          		:fname => (params[:fname] unless params[:fname].blank?),
+		          		:levname => (params[:levname] unless params[:levname].blank?), 
+		          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'remove_filter_link' %>
+		        </div>
+	        <% end %>
+
+	      </div>
+	      <% end %>
+	    <% else %>
+	    <p>Select faculty to see departments</p>
+	    <% end %>
+	  </div>
+<!--===================================================================-->
+<div></div>
+
+<!--===================================================================-->
+	  
+	  <div class="indiv_filters">
+	  <%# Fileter for the course names %>
+	  <h3>Courses</h3>
+	  
+	  <% if !params[:deptname].blank?%>
+	  
+	  <% for row in @search.facet(:coursename).rows  do %>
+	      <div>
+
+	        <% if params[:couname].blank? %>	
+	        <% val =  "[" + row.count.to_s  + "]" + " " +row.value.to_s%>          
+	        <%= link_to val, projects_path(
+	          		:couname => row.value,
+	          		:facname => (params[:facname] unless params[:facname].blank?),
+	          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+	          		:fname => (params[:fname] unless params[:fname].blank?),
+	          		:levname => (params[:levname] unless params[:levname].blank?), 
+	          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'filter-links'%>
+	          	
+	        <% else %>
+		        <div class="sec_2_remove">
+		          	<div  class ='remove_filter'><strong><em><%= row.value %></em></strong></div> 
+		          	<%= link_to "X", projects_path(
+		          		:couname => nil,
+	          			:facname => (params[:facname] unless params[:facname].blank?),
+	          			:deptname => (params[:deptname] unless params[:deptname].blank?),
+		          		:fname => (params[:fname] unless params[:fname].blank?),
+		          		:levname => (params[:levname] unless params[:levname].blank?), 
+		          		:catname => (params[:catname] unless params[:catname].blank?)), :class => 'remove_filter_link' %>
+		        </div>
+	        <% end %>
+
+	      </div>
+	      <% end %>
+	    <% else %>
+	    <p>Select department to see courses</p>
+	    <% end %>
+	  </div>
+<!--===================================================================-->
+<div></div>
+
+
+<!--===================================================================-->
+	  	
+
+
+
+
 <!--===================================================================-->
 
+	  <div class="indiv_filters">
+	  <h3>Staff</h3>
 
+	  <% if !params[:couname].blank?%>
+		  
+		  <%# Fileter for the staff names %>
+		  <% for row in @search.facet(:fullname).rows  do %>
+		      
+		      <div>
+		        <% if params[:fname].blank? %>
+		         <% val =  "[" + row.count.to_s  + "]" + " " +row.value.to_s%>          
+		        <%= link_to val, projects_path(
+		          		:fname => row.value,
+		          		:facname => (params[:facname] unless params[:facname].blank?),
+		          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+		          		:catname => (params[:catname] unless params[:catname].blank?),
+		          		:levname => (params[:levname] unless params[:levname].blank?), 
+		          		:couname => (params[:couname] unless params[:couname].blank?)), :class => 'filter-links'%>
+		          
+		        <% else %>
+		          <div class="sec_2_remove">
+			          	<div  class ='remove_filter'><strong><em><%= row.value %></em></strong></div> 
+			          	<%= link_to "X", projects_path(
+		          		:fname => nil,
+		          		:facname => (params[:facname] unless params[:facname].blank?),
+		          		:deptname => (params[:deptname] unless params[:deptname].blank?),
+		          		:catname => (params[:catname] unless params[:catname].blank?),
+		          		:levname => (params[:levname] unless params[:levname].blank?), 
+		          		:couname => (params[:couname] unless params[:couname].blank?)), :class => 'remove_filter_link' %>
+			        </div>
+		        <% end %>
+		      </div>
+
+		    <% end %>
+		<% else %>
+		<p>Select course to see Staff</p>
+		<% end %>
+	  </div>
+<!--===================================================================-->
+
+<hr>
 
 
 <!--===================================================================-->  

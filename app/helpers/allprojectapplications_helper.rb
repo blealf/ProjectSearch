@@ -1,0 +1,2 @@
+module AllprojectapplicationsHelper
+end

@@ -1,2 +1,64 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<%= render 'back' %>
+<hr>
+<div class="show_staff_projects">
+      
+    <% @projects.each do |rec| %>
+      <% if current_student.present? %>
+        <% if rec.level == current_student.level %>
+            <div class="search-results-content">
+          		<h3 class="title"> <%= link_to rec.title, rec, class: "title-link"%> </h3>
+          		<div class="description"><%= rec.description %> </div>
+          		<div class="tags">  Tags:
+        
+            		<% rec.project_tags.each do |pt|%>
+              		<div id="tags">
+                		<% tagstring = pt.tag_name.to_s.downcase %>
+                    	<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+              		</div>
+            		<% end %>
+
+          			<% tags = rec.tags.split(",") %> 
+          			<% tags.each do |t| %>
+              			<div id="tags"><%# t %>
+                			<% tagstring = t.to_s.downcase %>
+                			<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+              			</div> 
+          			<% end %>
+          		</div>
+      		</div>
+          <% end %>
+      <% else %>
+        <div class="search-results-content">
+          <h3 class="title"> <%= link_to rec.title, rec, class: "title-link"%> </h3>
+          <div class="description"><%= rec.description %> </div>
+          <div class="tags">  Tags:
+    
+            <% rec.project_tags.each do |pt|%>
+              <div id="tags">
+                <% tagstring = pt.tag_name.to_s.downcase %>
+                  <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+              </div>
+            <% end %>
+
+            <% tags = rec.tags.split(",") %> 
+            <% tags.each do |t| %>
+                <div id="tags"><%# t %>
+                  <% tagstring = t.to_s.downcase %>
+                  <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+                </div> 
+            <% end %>
+          </div>
+      </div>
+      <% end %>
+	<% end %>
+    <br>
+<%= will_paginate @projects, class: 'flickr_pagination'%>
+</div>
+<hr>
+<%= render 'back' %>
+
+
+
+
+
+

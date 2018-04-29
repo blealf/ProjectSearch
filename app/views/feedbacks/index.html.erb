@@ -1,0 +1,13 @@
+<h2> Student Feedbacks</h2>
+<div  class="show_project">
+	<% @feedbacks.each do |c| %>
+
+		<h4>From <%= c.student.pnumber.to_s + ", " %> sent about <%= time_ago_in_words(c.created_at) %> ago.</h4>
+		<p class="show_description"><%= simple_format(c.body, :class => 'show_description') %></p>
+		<div>
+			<div><%= link_to 'Delete', c, method: :delete, data: { confirm: "Sure to delete?" }, id: 'delete-project'%></div>
+		</div>
+		<hr>
+	<% end %>
+	<%= will_paginate @courses, class: 'flickr_pagination'%>
+</div>

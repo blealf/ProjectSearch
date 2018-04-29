@@ -1,0 +1,11 @@
+<%=form_for @project_application do |reply|%>
+	<table>
+		<tr>
+			<th><%= reply.label "Reply" %></th>
+		</tr>
+		<tr>
+			<td><%= reply.text_area :note, id: 'description_edit' %></td> 
+		</tr>
+	</table>
+<div class="save_div"><%= reply.submit 'Send', id: 'save_button' %></div>
+<% end %>

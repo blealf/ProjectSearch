@@ -1,0 +1,60 @@
+<h2>Create help</h2>
+<%= form_for @help do |help| %>
+
+	 <% if @help.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@help.errors.count, "error") %> stopped this form from being saved:</h3>
+
+      <ul>
+      <% @help.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table class="new_edit_project">
+	
+
+	<% messagearray = @help.errors.full_messages.to_s %>
+
+	<tr>
+		
+		<td class="field_names"><%= help.label :title %></td>
+		<%if messagearray.include? 'Title' %>
+			<td><%= help.text_field :title, id: 'title_error' %></td>
+		<% else %>
+			<td><%= help.text_field :title, id: 'title_edit' %></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= help.label :description %></td>
+		<%if messagearray.include? 'Description' %>
+			<td><%= help.text_area :description, id: 'description_error'%></td>
+		<% else %>
+			<td><%= help.text_area :description, id: 'description_edit'%></td>
+		<% end %>
+	</tr>
+	
+</table>
+<div class="save_div"><%= help.submit 'Save', id: 'save_button' %></div>
+<% end %>
+<hr>
+<% if !@help.errors.any? %>
+<div  class="show_project">
+	<% @helps.each do |c| %>
+
+		<h2 class="show_title"><%= c.title %></h2>
+		<p class="show_description"><%= simple_format(c.description, :class => 'show_description') %></p>
+		<div>
+			<div><%= link_to 'Edit', edit_help_path(c), id: 'edit-project', style: 'float:left'%></div>
+			<div><%= link_to 'Delete', c, method: :delete, id: 'delete-project'%></div>
+		</div>
+		<hr>
+	<% end %>
+</div>
+<% end %>
+	
+	 
+
+

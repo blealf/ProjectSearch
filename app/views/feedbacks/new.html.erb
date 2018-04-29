@@ -1,0 +1,40 @@
+<h2 style="margin-left: 20px">Feedback Form</h2>
+<p style="margin-left: 20px"> You can suggest improvements for the sytem <br>
+ Your feedback will be used to improve the functions of this system.</p>
+
+<%= form_for @feedback do |feedback| %>
+
+	 <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@feedback.errors.count, "error") %> stopped this form from being saved:</h3>
+
+      <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table class="new_edit_project">
+	
+
+	<% messagearray = @feedback.errors.full_messages.to_s %>
+
+
+	<tr>
+		<%if messagearray.include? 'body' %>
+			<td><%= feedback.text_area :body, id: 'description_error'%></td>
+		<% else %>
+			<td><%= feedback.text_area :body, id: 'description_edit'%></td>
+		<% end %>
+	</tr>
+	
+</table>
+<div class="save_div"><%= feedback.submit 'Send', id: 'save_button' %></div>
+<% end %>
+
+	
+	 
+
+

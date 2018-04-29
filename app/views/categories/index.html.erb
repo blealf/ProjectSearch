@@ -1,7 +1,6 @@
 <div>
 	<h1>Categories#index</h1>
 	<% @categories.each do |c| %>
-		<%= link_to c.category_name, c %> <br>
+		<p><%= link_to c.category_name, c %> </p> 
 	<% end %>
-	<p>Find me in app/views/categories/index.html.erb</p>
 </div>

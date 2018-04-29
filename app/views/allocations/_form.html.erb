@@ -1,0 +1,35 @@
+<h1 style="margin-bottom:40px;">Allocations</h1>
+<%= form_for @allocation do |c| %>
+	<% if @allocation.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@allocation.errors.count, "error") %> stopped this allocation from being saved:</h3>
+
+      <ul>
+      <% @allocation.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td class="field_names", style="font-size:1.4em"><%= c.label :student_id%></td>
+			<td class="field_names", style="font-size:1.4em"><%= c.label :staff_id%></td>
+			<td class="field_names", style="font-size:1.4em"><%= c.label :supervision_type_id%></td>
+
+		</tr>
+		<tr>
+			<td><%= c.select :student_id, Student.all.order(:full_name).collect {|c| [c.full_name, c.id]}, {:include_blank => "Select Student"}, class: 'categories'%></td>	 
+			
+			<td><%= c.select :staff_id, Staff.all.order(:first_name).collect {|c| [c.first_name.to_s + " " + c.last_name.to_s, c.id]}, {:include_blank => "Select Staff"}, class: 'categories'%></td>
+			<td><%= c.select :supervision_type_id, SupervisionType.all.order(:name).collect {|c| [c.name, c.id]}, {:include_blank => "Select Supervision"}, class: 'categories'%></td>	
+			<td><%= c.submit "save", id: 'save_button' %></td>	 
+		</tr>
+
+	</table>
+	
+<% end %>
+<% if !@allocation.errors.any? %>
+	<%= render 'allocations' %>
+<% end %>
+

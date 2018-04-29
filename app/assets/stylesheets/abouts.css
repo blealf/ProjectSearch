@@ -1,0 +1,19 @@
+// Place all the styles related to the abouts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
+.show_about{
+	font-family: font-family: 'Roboto', sans-serif;
+	padding: 10px;
+}
+.show_about_body{
+	padding: 10px;
+}
+
+#show_about_description{
+	font-family: font-family: 'Roboto', sans-serif;	
+	font-size: 1.2em;
+	text-align: justify;
+}

@@ -1,0 +1,29 @@
+<h1 style="margin-bottom:40px;">Supervision</h1>
+<%= form_for @supervision_type do |p_t| %>
+	  <% if @supervision_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supervision_type.errors.count, "error") %> prohibited this allocation from being saved:</h2>
+
+      <ul>
+      <% @supervision_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.4em"><%= p_t.label "Supervision"%></td>
+			<td><%= p_t.text_field :name, id: 'title_edit' %></td>
+			<td><%= p_t.submit "save", id: 'save_button' %></td>
+		</tr>
+
+	</table>
+	
+<% end %>
+
+
+<% if !@supervision_type.errors.any? %>
+	<%= render 'supervision_types' %>
+<% end %>

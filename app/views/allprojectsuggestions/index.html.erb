@@ -1,0 +1,51 @@
+
+<div class="show_staff_project">
+
+
+  <% if current_admin.present? %>
+    <div class="staff_portal_menu_div" >
+      <%= link_to 'Back', current_admin, :class => 'back_button' %>
+    </div>
+
+    <div class="welcome">
+        <div class="welcome_message"> Welcome:</div>
+        <div class="welcome_message"><%= current_admin.full_name.titleize %></div>
+    </div>
+  <% end %>
+
+  <% if !@projectsuggestions.empty? %>
+    <%-# This counts the number of project_suggestions by the student-%>
+    <h3> All project suggestions: (<%= @projectsuggestions.count %>)</h3>
+    <div class="manage_staff_project">
+    
+    <%-# Each project_suggestion is printed out using the ruby .each do loop method -%>
+    <% @projectsuggestions.each do |project_suggestion| %>
+      
+      <div class="staff_project">
+      
+
+        
+
+      <div class="staff_project_title"><%=link_to project_suggestion.title, suggestion_reply_url(project_suggestion), id: 'staff_project_title' %> </div>
+
+      <div class="staff_project_timestamp">
+        uploaded <%= time_ago_in_words(project_suggestion.created_at) %> ago. </div>
+
+        <div class="manage_control">
+        <% if !project_suggestion.suggestionreplies.empty? %>
+          <%= link_to 'View Communications', suggestion_reply_url(project_suggestion), id: 'edit-project' %>
+        <% end %>
+
+        </div>
+        <div style="clear:both; font-size:0.9em"> From: <%= project_suggestion.student.full_name.titleize.to_s + ", " + project_suggestion.student.pnumber.to_s %> <br>
+         To: <%= project_suggestion.staff.first_name.capitalize.to_s + " " + project_suggestion.staff.last_name.capitalize.to_s + ", " + project_suggestion.staff.pnumber.to_s %></div>
+
+
+    </div>
+  <% end %>
+  
+  </div>
+  <% end %>
+
+</div>
+

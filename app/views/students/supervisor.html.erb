@@ -1,0 +1,24 @@
+
+<hr>
+<p style="font-weight:bolder;font-size:1.5em">Supervisors</p>
+
+
+<table>
+	<tr>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Staff</td>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Role</td>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Time</td>
+	</tr>
+</table>
+<% @supervisors.each do |c| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= c.staff.first_name.capitalize.to_s + " " + c.staff.last_name.capitalize.to_s + " ("+ c.staff.email.to_s + ")" %></td>
+		<td class="admin_manage_field_names"><%= c.supervision_type.name %></td>
+		<td class="admin_manage_field_names"><%= time_ago_in_words(c.created_at) %> ago</td>
+	</tr>
+</table>
+<% end %>
+<br>
+<%#= will_paginate @supervisions, class: 'flickr_pagination'%>
+

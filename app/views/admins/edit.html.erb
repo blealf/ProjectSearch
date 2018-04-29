@@ -1,0 +1,31 @@
+<h2>Create Admin Form</h2>
+
+<%= form_for(@admin) do |admin| %>
+	  <% if @admin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin details from being saved:</h2>
+
+      <ul>
+      <% @admin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+	<tr>
+		<td class="field_names"><%= admin.label :email %></td>
+		<td><%= admin.text_field :email, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= admin.label :tel %></td>
+		<td><%= admin.text_field :tel, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+</table>
+<div class="save_div"><%= admin.submit 'Save', id: 'save_button' %></div>
+<% end %>
+
+

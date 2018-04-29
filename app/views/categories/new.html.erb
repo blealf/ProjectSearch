@@ -1,9 +1,27 @@
-<h1>Categories#new</h1>
-<div>
-	<%= form_for (@category) do |c| %>
-		<%= c.label :category_name %>
-		<%= c.text_field :category_name %>
-		<%= c.submit 'save' %>
-	<% end %>
-</div>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h1 style="margin-bottom:40px;">Project categories</h1>
+<%= form_for @category do |c| %>
+	<% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.6em"><%= c.label :category_name%>:</td>
+			<td><%= c.text_field :category_name, id: 'title_edit' %></td>
+			<td><%= c.submit "save", id: 'save_button' %></td>
+		</tr>
+
+	</table>
+	
+<% end %>
+
+<% if !@category.errors.any? %>
+	<%= render 'categories' %>
+<% end %>

@@ -1,0 +1,33 @@
+<p>Number of allocations: <%= @allocations.count %></p>
+<hr>
+<table>
+	<tr>
+		<th style="font-weight:bolder;font-size:1.5em">Allocations</th>
+	</tr>
+	<tr>
+		<td><hr></td>
+		<td><hr></td>
+		<td><hr></td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><h3> Student</h3></td>
+		<td class="admin_manage_field_names"><h3>Staff</h3></td>
+		<td class="admin_manage_field_names"><h3>Supervision</h3></td>
+	</tr>
+</table>
+<% @allocations.each do |c| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= c.student.full_name %></td>
+		<td class="admin_manage_field_names"><%= c.staff.first_name.to_s + " " + c.staff.last_name.to_s %></td>
+		<td class="admin_manage_field_names"><%= c.supervision_type.name %></td>
+		<td><%= link_to 'Edit', edit_allocation_path(c), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', c, method: :delete, id: 'delete-project'%></td>
+	</tr>
+</table>
+<% end %>
+<br>
+<%= will_paginate @allocations, class: 'flickr_pagination'%>
+

@@ -1,0 +1,25 @@
+<h2>Stutent Suggestions</h2>
+    <div class="manage_staff_projects">
+    
+    <%-# Each project is printed out using the ruby .each do loop method -%>
+    <% @student_suggestions.each do |project| %>
+      
+      <div class="staff_project">
+
+      <div class="staff_project_title"><%=link_to project.title, suggestion_reply_url(project), id: 'staff_project_title' %> </div>
+
+      <div class="staff_project_timestamp">
+        recieved <%= time_ago_in_words(project.created_at) %> ago.
+        <p></p> From: <span style="font-size:1.2em;"><%= project.student.full_name.titleize%></span> </div>
+
+      <% !if logged_in? && current_staff.present? %>
+
+        <div class="manage_control">
+          <%= link_to 'Reply', suggestion_reply_url(project), id: 'edit-project' %>          
+        </div>
+      <% end %>
+
+    </div>
+  <% end %>
+  
+  </div>

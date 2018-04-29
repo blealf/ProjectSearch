@@ -1,0 +1,39 @@
+<h1 style="margin-bottom:10px;">Admin Page</h1>
+<p> Manage Project Labels and others: </p>
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div"><%= link_to "Faculties", new_faculty_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Departments", new_department_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Courses", new_course_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Levels", new_level_path, class: 'admin_portal_menu'%></div>
+</div>
+
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div" class="admin_portal_div"><%= link_to "Project tags", new_project_tag_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Project Categories", new_category_path, class: 'admin_portal_menu'%></div>
+</div>
+
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div"><%= link_to "Staffs", staffs_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Students", students_path, class: 'admin_portal_menu'%></div>
+</div>
+
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div"><%= link_to "About", new_about_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Help", new_help_path, class: 'admin_portal_menu'%></div>
+</div>
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div"><%= link_to "Project Applications", allprojectapplications_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Project Suggestions", allprojectsuggestions_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Student Feedbacks", feedbacks_path, class: 'admin_portal_menu'%></div>
+</div>
+
+<div style="margin-top: 50px;">
+<div class="admin_portal_div"><%= link_to "Edit profile", edit_admin_path(current_admin), class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Supervision types", new_supervision_type_path, class: 'admin_portal_menu'%></div>
+<div class="admin_portal_div"><%= link_to "Supervision Allocation", new_allocation_path, class: 'admin_portal_menu'%></div>
+</div>

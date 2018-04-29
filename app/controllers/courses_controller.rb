@@ -7,16 +7,23 @@
 #
 class CoursesController < ApplicationController
 
+  #authorize admin
+  before_action :admin_logged_in!, only: [:new, :edit, :update, :destroy]
+
   # index 
   # @courses: fetches all the courses from the database for output
   def index
-  	@courses = Course.all
+    @per_page = params[:per_page] || 10
+  	@courses = Course.all.order(:course_name).paginate(page: params[:page] || 1, :per_page => @per_page)
   end
 
   # new
   # Create a new Course instance
   def new
   	@course = Course.new
+    @per_page = params[:per_page] || 10
+
+    @courses = Course.all.order(:course_name).paginate(page: params[:page] || 1, :per_page => @per_page)
   end
   
   # create
@@ -29,7 +36,7 @@ class CoursesController < ApplicationController
   def create
   	@course = Course.new(course_params)
   	if @course.save
-  		redirect_to @course
+  		redirect_to new_course_path
   	else
   		render 'new'
   	end
@@ -46,7 +53,8 @@ class CoursesController < ApplicationController
   # 
   def show
   	set_course
-  	@projects = set_course.projects
+    @per_page = params[:per_page] || 10
+  	@projects = set_course.projects.paginate(page: params[:page] || 1, :per_page => @per_page)
   end
 
   # edit
@@ -54,6 +62,8 @@ class CoursesController < ApplicationController
   # using the defined private method set_course
   def edit
   	set_course
+    @per_page = params[:per_page] || 10
+    @courses = Course.all.order(:course_name).paginate(page: params[:page] || 1, :per_page => @per_page)
   end
 
   # update
@@ -64,7 +74,7 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update_attributes(course_params)
-      redirect_to @course
+      redirect_to new_course_path
     else
       render 'edit'
     end
@@ -79,7 +89,7 @@ class CoursesController < ApplicationController
   def destroy
   	@course = Course.find(params[:id])
   	@course.destroy
-  	redirect_to courses_path
+  	redirect_to new_course_path
   end
 
   # This contains method private to this controller
@@ -87,12 +97,18 @@ class CoursesController < ApplicationController
 
   # This private method indicates the parameters for the course using the strong params
   def course_params
-  	params.require(:course).permit(:course_name)
+  	params.require(:course).permit(:course_name, :department_id)
   end
 
   # This private method fetches a course from  the database by the id
+  # or by the course_id of the current student
   def set_course
-  	@course = Course.find(params[:id])
+    if current_student.present?
+  	   @course = Course.find(current_student.course_id)
+    else
+      @course = Course.find(params[:id])
+    end
+
   end
 
 end

@@ -1,0 +1,23 @@
+<p style="font-size:1.2em">Number of supervisions: <%= @supervisions.count %></p>
+<hr>
+<p style="font-weight:bolder;font-size:1.5em">Supervions</p>
+
+<table>
+	<tr>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Student</td>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Role</td>
+		<td class="admin_manage_field_names" style="font-weight:bolder;font-size:1.3em">Time</td>
+	</tr>
+</table>
+<% @supervisions.each do |c| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= c.student.full_name.titleize.to_s + " (" + c.student.pnumber.to_s + ")" %></td>
+		<td class="admin_manage_field_names"><%= c.supervision_type.name %></td>
+		<td class="admin_manage_field_names"><%= time_ago_in_words(c.created_at) %> ago</td>
+	</tr>
+</table>
+<% end %>
+<br>
+<%#= will_paginate @supervisions, class: 'flickr_pagination'%>
+

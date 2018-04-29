@@ -1,0 +1,62 @@
+<%= form_for(@project_suggestion) do |project_suggestion| %>
+	  <% if @project_suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@project_suggestion.errors.count, "error") %> stopped this project suggestion from being saved:</h3>
+
+      <ul>
+      <% @project_suggestion.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table class="new_edit_project_suggestion">
+	
+
+	<% messagearray = @project_suggestion.errors.full_messages.to_s %>
+<% if current_student.present? %>
+	<tr>
+		
+		<td class="field_names"><%= project_suggestion.label :title %></td>
+		<%if messagearray.include? 'Title' %>
+			<td><%= project_suggestion.text_field :title, id: 'title_error' %></td>
+		<% else %>
+			<td><%= project_suggestion.text_field :title, id: 'title_edit' %></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project_suggestion.label :description %></td>
+		<%if messagearray.include? 'Description' %>
+			<td><%= project_suggestion.text_area :description, id: 'description_error'%></td>
+		<% else %>
+			<td><%= project_suggestion.text_area :description, id: 'description_edit'%></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td class="field_names"><%= project_suggestion.label :staff_id%> <br></td>
+		<td><%= project_suggestion.select :staff_id, current_student.course.department.staffs.each.collect {|c| [c.first_name.capitalize + " " + c.last_name.capitalize, c.id]}, {:include_blank => "Select Staff"}, class: 'categories' %></td>
+	</tr>
+	<% elsif current_staff.present? %>
+	<div class="show_project_suggestion">
+	<h2 class="show_title"><%= @project_suggestion.title %></h2>
+	<p class="show_description"><%= simple_format(@project_suggestion.description, :class => 'show_description')%></p>
+	<hr>
+	</div>
+	<div class="comment_box_show">
+		<p> <%=  project_suggestion.label "Reply" %> </p>
+		<%=  project_suggestion.text_area :note, class: 'comment'%>
+	</div>
+	
+	<% end %>
+
+</table>
+<% button = "" %>
+<% if current_student.present? %>
+	<% button = "Save" %>
+<% elsif current_staff.present? %>
+	<% button = "Reply" %>
+<% end %>
+<div class="save_div"><%= project_suggestion.submit button, id: 'save_button' %></div>
+<% end %>
+
+	

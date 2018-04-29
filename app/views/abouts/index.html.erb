@@ -1,0 +1,7 @@
+<% @abouts.each do |c| %>
+	<div  class="show_project">
+		<h2 class="show_title"><%= c.title %></h2>
+		<p class="show_about_body"><%= simple_format(c.description, :id => 'show_about_description') %></p>
+		<hr>
+	</div>
+<% end %>

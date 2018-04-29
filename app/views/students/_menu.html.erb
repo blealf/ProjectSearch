@@ -1,9 +1,22 @@
-<div class="nav-menu-holder" >
-    <% if logged_in? %>
-        <%= link_to "Logout", logout_path, method: "delete", class: 'nav-menu', id: 'log-session' %>
-    <% else %>
-        <%= link_to "Signup", signup_path, class: 'nav-menu', id: 'log-session' %> 
-        <%= link_to "Login", login_path, class: 'nav-menu', id: 'log-session' %>
-    <% end %> 
+  <div class="student_portal_menu_div" >
+    <%= link_to 'All Projects', projects_path, class: 'staff_portal_menu' %>
 
-</div>
+    <%-# Checks if the student is logged in-%>
+
+        <% if current_student.present? %>
+           <%= link_to "Edit profile", edit_student_path, class: 'staff_portal_menu' %>
+           <%= link_to "My Project suggestions", project_suggestions_path, class: 'staff_portal_menu' %>
+           <%= link_to "My Shortlists", shortlists_path, class: 'staff_portal_menu' %>
+           <%= link_to "My Applications", project_applications_path, class: 'staff_portal_menu' %>
+            
+            <div style="margin-top:30px;">
+            <%= link_to "Supervisors", student_supervisor_url, class: 'staff_portal_menu' %>
+            <%= link_to "Feedback", new_feedback_path, class: 'staff_portal_menu2'%></div>
+
+        
+    </div>
+    <div class="welcome">
+      <div class="welcome_message"> Welcome:</div>
+      <div class="welcome_message"><%= @student.full_name.split(' ')[0]  %></div>
+    </div>
+    <% end %>

@@ -1,7 +1,8 @@
 <div>
-	<h1>courses#index</h1>
+	<h2 style="text-align:center;">Browse By Courses</h2>
 	<% @courses.each do |c| %>
-		<%= link_to c.course_name, c %> <br>
+		<p> <%= link_to c.course_name, c %> </p>
 	<% end %>
-	<p>Find me in app/views/courses/index.html.erb</p>
+	<br>
+<%= will_paginate @courses, class: 'flickr_pagination'%>
 </div>

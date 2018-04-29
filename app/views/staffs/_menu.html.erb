@@ -1,9 +1,14 @@
-<div class="nav-menu-holder" >
-    <% if logged_in? %>
-        <%= link_to "Logout", logout_path, method: "delete", class: 'nav-menu', id: 'log-session' %>
-    <% else %>
-        <%= link_to "Signup", signup_path, class: 'nav-menu', id: 'log-session' %> 
-        <%= link_to "Staff Login", login_path, class: 'nav-menu', id: 'log-session' %>
-    <% end %> 
-
+<div class="staff_portal_menu_div" >
+  <%= link_to 'All Projects', projects_path, class: 'staff_portal_menu' %>
+   <%= link_to "Create new project", new_project_path, class: 'staff_portal_menu' %>
+   <%= link_to "Edit Profile", edit_staff_path(current_staff), class: 'staff_portal_menu' %> 
+   <%= link_to "Student Suggestions", studentsuggestions_path, class: 'staff_portal_menu' %>
+   <%= link_to "Student Applications", studentapplications_path, class: 'staff_portal_menu' %>
+   <div style="margin-top:30px;"> <%= link_to "Supervision", staff_supervision_url, class: 'staff_portal_menu' %> 
+   <%#= link_to "Application Archives", archives_path, class: 'staff_portal_menu' %></div>
+</div>
+<div class="welcome">
+  <div class="welcome_message"> Welcome:</div>
+  <div class="welcome_message"><%= @staff.first_name.capitalize %></div>
+  <div class="welcome_message"><%= @staff.last_name.capitalize %></div>
 </div>

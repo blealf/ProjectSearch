@@ -1,9 +1,59 @@
-   <h1>Students#show</h1>
 
-  <div>
-    <p class="student_welcome"> Welcome </p>
-    <p class="student_welcome"><%= @student.full_name %></p>
-    <p class="student_welcome"><%= @student.email %></p>
-  </div>
+<div class="show_staff_projects">
+    <% if logged_in? %>
+    <%= render 'menu' %>
+  
+      <h3>Project Recommendations</h3>
+      <div class="manage_staff_projects">
+      <div>
+         <% @course.each do |course|%>
+         <%= link_to "All projects for #{current_student.course.course_name} (#{current_student.level.level_name})", course_projects_url, class: 'staff_portal_menu'%>
+         <% end %>
+      </div>
 
-<p>Find me in app/views/students/show.html.erb</p>
+      <div>
+      <h4>Recommendations for <%= current_student.level.level_name %> project based on your indicated interests </h4>
+      <hr>
+      <% if !@combined_interest_uniq.empty? %>
+        <% @combined_interest_uniq.each do |project| %>
+
+        <!-- check if the project belongs to the student's level-->
+        <% if project.level.eql?current_student.level %>
+              <div class="search-results-content">
+          <h3 class="title"> <%= link_to project.title, project, class: "title-link"%> </h3>
+          <div class="description"><%= project.description %> </div>
+          <div class="tags">  Tags:
+        
+        <% project.project_tags.each do |pt|%>
+          <div id="tags">
+            <% tagstring = pt.tag_name.to_s.downcase %>
+                <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+          </div>
+        <% end %>
+
+          <% tags = project.tags.split(",") %> 
+          <% tags.each do |t| %>
+              <div id="tags"><%# t %>
+                <% tagstring = t.to_s.downcase %>
+                <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+              
+              </div> 
+          <% end %>
+          </div>
+      </div>
+
+      <% end %>
+    <% end %>
+    <% end %>
+
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+

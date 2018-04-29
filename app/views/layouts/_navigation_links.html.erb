@@ -1,0 +1,22 @@
+<%# add navigation links to this file %>
+
+<% if logged_in? %>		
+	<% if current_staff.present? %>
+		<li><%= link_to "My Portal", staff_path(current_staff.id)%></li>
+	<%  elsif current_student.present? %>
+		<li><%= link_to "My portal", student_path(current_student.id)%></li> 
+	<%  elsif current_admin.present? %>
+		<li><%= link_to "Admin portal", admin_path(current_admin.id)%></li>
+	<% end %>
+	<li id="log-sessions"><%= link_to "Logout", logout_path, method: "delete"%></li>
+<% elsif !logged_in? %>
+	<li id="log-sessions"><%= link_to "Staff Signup", staff_signup_path%></li>
+	<li id="log-sessions"><%= link_to "Student Signup", student_signup_path%></li>
+	<li id="log-sessions"><%= link_to "Login", login_path%></li>
+<% end %>
+<li id="log-sessions"><%= link_to "About", abouts_path %></li>
+<li id="log-sessions"><%= link_to "Help", helps_path %></li>
+
+
+
+

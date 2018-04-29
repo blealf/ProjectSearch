@@ -1,25 +1,15 @@
-<h1>Staff#index</h1>
 
-<% @staffs.each do |staff| %>
-<table>
-	<tr>
-		<td><%= staff.first_name %></td>
-	</tr>
-	<tr>
-		<td><%= staff.last_name %></td>
-	</tr>
-	<tr>
-		<td><%= staff.email %></td>
-	</tr>
-	<tr>
-		<td><%= staff.office_tel %></td>
-		<td><%= link_to 'Delete', staff, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%></td>
-	</tr>
-
-</table>
-<%= link_to "Show", staff %>
-<%= link_to "edit", edit_staff_path(staff) %>
-<% end %>
-<%= link_to "New Staff", new_staff_path %> |
-<%= link_to "Signup", signup_path %> | <%= link_to "Login", login_path %>
-<p>Find me in app/views/staff/index.html.erb</p>
+<h3> <%= link_to "New staff", new_staff_path %></h3>
+<% Department.all.order(:department_name).each do |d| %>
+<hr>
+	<h4><%= d.department_name %></h4>
+	<% d.staffs.order(:first_name).each do |s| %>
+	<table>
+			<tr>
+				<td style="padding:10px; width:300px"><%= s.first_name.capitalize + " " + s.last_name.capitalize%> </td>
+				<td><%= s.pnumber %></td>
+				<td><%= link_to 'Delete', s, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%></td>
+			</tr>
+			</table>
+	<% end %> 
+<% end %>	

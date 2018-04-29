@@ -1,0 +1,8 @@
+<% if current_staff.present? %>
+	<%= link_to 'Back', current_staff, :class => 'back_button'  %>
+<% elsif current_student.present?%>
+	<%= link_to 'Back', current_student, :class => 'back_button'  %>
+<% else %>
+	<%= link_to 'All projects', projects_path, :class => 'back_button'  %>
+
+<% end %><br>

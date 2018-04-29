@@ -1,0 +1,16 @@
+<div class="admin_portal_div" class="admin_portal_div"><%= link_to "Create Project Tags", new_project_tag_path, class: 'admin_portal_menu'%></div>
+<div>
+<p>Number of project tags: <%= @project_tags.count %></p>
+<table>
+<% @project_tags.each do |p_t| %>
+	<tr>
+		<td><%= p_t.tag_name %></td>
+		<td><%= link_to 'Edit', edit_project_tag_path(p_t), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', p_t, method: :delete, id: 'delete-project'%></td>
+	</tr>
+	
+	 <br>
+
+<% end %>
+</table>
+</div>

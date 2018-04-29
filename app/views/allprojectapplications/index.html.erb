@@ -1,0 +1,58 @@
+
+<div>
+	<%= link_to 'Back', current_admin, :class => 'back_button' %>
+</div>
+
+	<h2 style="text-align:center;">All Project Applications</h2>
+Number of Applications: <%= @project_applications.count %>
+<hr>
+<% if !@project_applications.empty? %>
+
+<% @project_applications.each do |project_applications| %>
+	<div style="font-size:1.0em;font-weight:bolder;color:#cc3300;padding-top:10px;"><%= time_ago_in_words(project_applications.created_at) %> ago. Application from: <%= project_applications.student.full_name.titleize + " (" + project_applications.student.pnumber + ")" %> for</div>
+<% if !project_applications.applicationreplies.empty? %>
+	<%= link_to "View Reply", application_reply_url(project_applications), id: 'edit-project', :style => "float:right" %>
+<% end %>
+
+	<% p = project_applications.project_id.to_i %>
+	<% Project.where(id: p).find_each do |p| %>
+
+			<div class="search-results-content">
+
+			    
+
+			    <h3 class="title"> <%= link_to p.title, p, class: "title-link"%> </h3>
+			    <div class="description"><%= p.description %> </div>
+			    <div class="tags">  Tags:
+				
+				<% p.project_tags.each do |pt|%>
+					<div id="tags">
+					 	<% tagstring = pt.tag_name.to_s.downcase %>
+				        <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+					</div>
+				<% end %>
+
+			    <% tags = p.tags.split(",") %> 
+			    <% tags.each do |t| %>
+			        <div id="tags"><%# t %>
+			        	<% tagstring = t.to_s.downcase %>
+			        	<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+			        
+			        </div> 
+			    <% end %>
+			    </div style="margin-top:5px;">
+			    <div style="font-size:0.7em">Project proposal by: <%=link_to p.staff.first_name.capitalize + ". " + p.staff.last_name.capitalize, p.staff %>
+			    </div>	
+			    
+			</div>
+	<% end %>
+
+<% end %>
+<% else %>
+		<p>	You do not have any project_applications</p>
+<% end %>
+<br>
+<hr>
+<div>
+	<%= link_to 'Back', current_admin, :class => 'back_button' %>
+</div>

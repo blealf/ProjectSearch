@@ -1,0 +1,8 @@
+<div class="osearch-bar-coat">
+    <div class="osearch-bar">
+    	<%= form_tag(projects_path, :method => "get") do %>
+		  <%= text_field_tag :q, params[:q], placeholder: "Search Projects", :class => 'osearch-input' %>
+		  <%= submit_tag "Search", :class => 'osearch-btn-top' %>
+		<% end %>
+    </div>
+</div>

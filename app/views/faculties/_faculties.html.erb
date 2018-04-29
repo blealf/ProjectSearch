@@ -1,0 +1,21 @@
+<p>Number of Faculties: <%#= @faculties.count %></p>
+<hr>
+<table>
+	<tr>
+		<th style="font-weight:bolder;font-size:1.5em">Faculties</th>
+	</tr>
+	<tr>
+		<td><hr></td>
+		<td><hr></td>
+		<td><hr></td>
+	</tr>
+</table>
+<% @faculties.each do |f| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= f.faculty_name %></td>
+		<td><%= link_to 'Edit', edit_faculty_path(f), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', f, method: :delete, id: 'delete-project'%></td>
+	</tr>
+</table>
+<% end %>

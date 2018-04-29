@@ -1,0 +1,68 @@
+<% if @project.is_a?(ProjectSuggestion) %>
+
+
+	<% if @reply_to.is_a?(Student) %>
+		<h3> Project Suggestion From: <%= @reply_to.full_name.titleize.to_s + ", " + @reply_to.pnumber.to_s%>@my365.dmu.ac.uk </h3>
+		<p>
+			With the topic: <%= link_to @project.title, @project%> <br>
+		</p>
+		<p> <%= @message %> </p>
+		
+	<% elsif @reply_to.is_a?(Staff) %>
+		<h3> From: <%= @reply_to.first_name.capitalize.to_s + " " + @reply_to.last_name.capitalize.to_s + ", " + @reply_to.pnumber.to_s%>@my365.dmu.ac.uk </h3>
+		<p> For your project suggestion: <%= link_to @project.title, @project%> </p>
+		<p> <%= @message %> </p>
+	<% end %>
+
+	<p>Click Reply on your mail to reply to the <%= @reply_to.class%></p>
+<% end %>
+
+
+
+
+<% if @project.is_a?(ProjectApplication) %>
+
+	<% if @reply_to.is_a?(Student) %>
+		<h3> Application From: <%= @reply_to.full_name.titleize.to_s + ", " + @reply_to.pnumber.to_s%>@my365.dmu.ac.uk </h3>
+		<p>
+			For your project proposal: <%= link_to @project.project.title, @project.project%> <br>
+		</p>
+		<p> <%= @message %> </p>
+
+	<% elsif @reply_to.is_a?(Staff) %>
+		<h3> From: <%= @reply_to.first_name.capitalize.to_s + " " + @reply_to.last_name.capitalize.to_s + ", " + @reply_to.email.to_s%></h3>
+		<p> For your project application: <%= link_to @project.project.title, @project.project%> </p>
+		<p> <%= @message %> </p>
+		
+	<% end %>
+
+	<p> Click Reply on your mail to reply to the <%= @reply_to.class%> </p>
+<% end %>
+
+
+
+
+<% if @project.is_a?(String) %>
+	  <p> <%= @message %> </p>
+	<% @reciever.shortlists.each do |p| %>
+		<p> <%= link_to p.project.title, p.project %> </p>
+	<% end %>
+<% end %>
+
+<% if @project.is_a?(Feedback) %>
+	  <p> <%= @message %> </p>
+	<%= link_to "My Portal", login_url %>
+<% end %>
+
+<% if @project.is_a?(Allocation) %>
+	<p> Project Supervision Allocation </p>
+	<p> <%= @project.supervision_type.name %> </p>
+	<table>
+		<tr>
+			<td> Staff: <%= @project.staff.first_name.capitalize.to_s + " " + @project.staff.last_name.capitalize.to_s + ", " + @project.staff.email.to_s%></td>
+			<td> Student: <%= @project.student.full_name.titleize.to_s + ", " + @project.student.pnumber.to_s%>@my365.dmu.ac.uk </td>
+		</tr>
+	</table>
+	<br>
+	You can log into your portal<%= link_to "here", login_url %>
+<% end %>

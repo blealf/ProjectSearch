@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  note: MyText
+  project_suggestion_id: 
+  commenter: MyString
+  note: MyString
+
+two:
+  note: MyText
+  project_suggestion_id: 
+  commenter: MyString
+  note: MyString

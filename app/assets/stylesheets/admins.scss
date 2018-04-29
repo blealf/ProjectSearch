@@ -1,0 +1,28 @@
+// Place all the styles related to the admins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.admin_portal_div{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	display: inline;
+}
+.admin_portal_menu{
+	background: #FE9C9A;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	margin-bottom: 20px;
+	font-size: 1.2em;
+}
+
+.admin_portal_menu:hover{
+	background-color: black;
+}
+
+.admin_manage_field_names {
+	vertical-align: top;
+	min-width: 300px;
+	font-size: 1.1em;
+}

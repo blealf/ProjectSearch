@@ -13,64 +13,69 @@ class ProjectsController < ApplicationController
   # granting permission to create, edit or delete a project from the database
   before_action :staff_logged_in!, only: [:new, :edit, :update, :destroy]
 
+
+  def projecthome
+    index
+  end
+
   # This method handles the index page view
   # It searches all projects and provides filters
   def index
+    student_shortlist
 
     # defines a variable @categories used in the _project.html.erb partial view for
     # outputting all categories
-  	@categories = Category.all
+    @categories = Category.all
+    #@shortlists = current_student.shortlists
     
+        #order_by(:title, :desc)
+        #order_by(:created_at, :desc)
+        #**********************************************************************
+        
+        #paginate(page: params[:page], :per_page => 5)
 
     @search = Project.search(:include => [:staff]) do
       keywords(params[:q])
-      
-      #================================================================
-      # exclusions = []
-      # if params[:name].present?
-      #       exclusions << with(:firstname, params[:name])
-      # end
-      #
-      # if params[:cname].present?
-      #       exclusions << with(:categoryname, params[:cname])
-      # end
-      #
-      # exclusions.compact!
-      # exclusions = nil if exclusions.empty?
-      # facet (:firstname, :exclude => exclusions, :name => :firsname)
-      #:exclude => exclusions, :name => :all_categories
-      #with(:firstname, params[:name]) if params[:name].present?
-      #facet(:categoryname, :exclude => exclusions, :cname => :categoryname)
-      #========================================================================
+      with(:visible, true)
 
-      # defines a facet on the firstname of the staff
-      # categoryname for the categories
-      # and coursename for the courses
-      facet(:fullname, :coursename, :categoryname)
+      # fetches the facet on the firstname of the staff
+      # categoryname for the categories, facultyname for faculty, 
+      # departmentname for the department, coursename for the courses
+      # and levelname for level models
 
-      # this is used to filter the search results 
-      # when the filters are used in the page
+      facet(:fullname, :coursename, :categoryname, :departmentname, :facultyname, :levelname)
+
+      # this part includes the facets as filters for the search results
+      # if it is selected in from the interface (view)
       with(:fullname, params[:fname]) if params[:fname].present?
       with(:categoryname, params[:catname]) if params[:catname].present?
       with(:coursename, params[:couname]) if params[:couname].present?
+      with(:departmentname, params[:deptname]) if params[:deptname].present?
+      with(:facultyname, params[:facname]) if params[:facname].present?
+      with(:levelname, params[:levname]) if params[:levname].present?
 
+      # with(:date_earliest, params[:date_e]) if params[:date_e].present?
+      # with(:date_latest, params[:date_l]) if params[:date_l].present?
 
-      #**********************************************************************
-      # this uses the will_paginate gem to paginate the results of the search.
-      paginate(page: params[:page], :per_page => 15)
+      #order_by(params[:date_earliest] || :title)
+      #order_by(params[:date_earliest]) if params[:date_e].present?
+      #order_by(params[:date_latest]) if params[:date_l].present?
     end
 
-    # =======================================================================
-    # if params[:q].blank?
-    #   @projects = Project.all
-    # else
-    #   @projects = @search.results
-    # end
-    # =======================================================================
 
     # assigns the @projects variable to the result of the search results
-    @projects = @search.results
+    #@projects = @search.results
+
+    # This code snippet is gotten from:
+    # http://stackoverflow.com/questions/27064993/how-to-use-will-paginate-with-sunspot-solr
+    # this uses the will_paginate gem to paginate the results of the search.
+    @per_page = params[:per_page] || 5
+    @projects = Project.where(id: @search.hits.map(&:primary_key)).order(created_at: :desc).paginate(page: params[:page] || 1, :per_page => @per_page)
+
+    #@projects = @projects.order(params[:order])
+    
   end
+
 
   # new
   # Create a new Project instance
@@ -91,9 +96,11 @@ class ProjectsController < ApplicationController
   # The if statement ensures that if it is not saves the new project page
   def create
     
+
     #@project = Project.new(project_params)
     @project = current_staff.projects.build(project_params)
     
+
     #@project.staff_id = current_staff.id
     if @project.save
       redirect_to @project, :notice => "Saved"
@@ -112,8 +119,17 @@ class ProjectsController < ApplicationController
   # relationship between the project and course class
   # 
   def show
+
   	set_project
+    student_shortlist
+
+
+
+    #get all course matching for a project
     @courses = set_project.courses
+
+    #get all project tags for a project
+    @project_tags = set_project.project_tags
   end
 
   # edit
@@ -125,12 +141,11 @@ class ProjectsController < ApplicationController
 
   # update
   # this fetches the existing project by the id for editing in the view
-  # and updates changes to that id
-  #
+  # and updates changes to that id.
   # if there is an error preventing update, it renders the edit form again
   def update
   	if set_project.update(project_params)
-  		redirect_to set_project
+  		redirect_to staff_path(current_staff.id)
   	else
   		render 'edit'
   	end
@@ -146,7 +161,7 @@ class ProjectsController < ApplicationController
   	set_project
   	@project.destroy
 
-  	redirect_to projects_path
+  	redirect_to current_staff
   end
 
   # This contains method private to this controller
@@ -154,7 +169,7 @@ class ProjectsController < ApplicationController
 
     # This private method indicates the parameters for the course using the strong params
   	def project_params
-  		params.require(:project).permit(:title, :description, :tags, :url, :staff_id, :category_id, course_ids:[])
+  		params.require(:project).permit(:title, :description, :tags, :url, :staff_id, :category_id, :level_id, :visible, course_ids:[], project_tag_ids:[])
   	end
   	
     # This private method fetches a course from  the database by the id
@@ -162,4 +177,24 @@ class ProjectsController < ApplicationController
   		@project = Project.find(params[:id])
   	end
 
+    # def new_shortlists
+    #   @shortlist = Shortlist.new
+    #   @shortlist = current_student.shortlists.build(params[:project_id])
+    #   @shortlist.save
+    #   # if @shortlist.save
+    #   #   redirect_to set_project
+    #   # else
+    #   #   redirect_to set_project
+    #   # end
+    # end
+
+    def student_shortlist
+      #find all shortlists and project applications 
+      # for the currently logged in student to prevent
+      #duplicate entries
+      if current_student.present?
+        @stushort = current_student.shortlists
+        @studentapplications = current_student.project_applications
+      end
+  end
 end

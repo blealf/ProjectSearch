@@ -1,0 +1,21 @@
+<p>Number of project levels: <%= @levels.count %></p>
+<hr>
+<table>
+	<tr>
+		<th style="font-weight:bolder;font-size:1.5em">Levels</th>
+	</tr>
+	<tr>
+		<td><hr></td>
+		<td><hr></td>
+		<td><hr></td>
+	</tr>
+</table>
+<% @levels.each do |l| %>
+<table>
+	<tr>
+		<td class="admin_manage_field_names"><%= l.level_name %></td>
+		<td><%= link_to 'Edit', edit_level_path(l), id: 'edit-project'%></td>
+		<td><%= link_to 'Delete', l, method: :delete, id: 'delete-project'%></td>
+	</tr>
+</table>
+<% end %>

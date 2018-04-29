@@ -1,2 +1,31 @@
-<h1>Courses#edit</h1>
-<p>Find me in app/views/courses/edit.html.erb</p>
+<h1 style="margin-bottom:40px;">Courses</h1>
+<%= form_for @course do |c| %>
+	<% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h3 class="error-alert"><%= pluralize(@course.errors.count, "error") %> stopped this course from being saved:</h3>
+
+      <ul>
+      <% @course.errors.full_messages.each do |message| %>
+        <li class="error-alert"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<table>
+		<tr>
+			<td  class="field_names", style="font-size:1.4em"><%= c.label :course_name%>:</td>
+			<td><%= c.text_field :course_name, id: 'title_edit' %></td>
+			<td><%= c.submit "save", id: 'save_button' %></td>
+		</tr>
+		<tr>
+			<td class="field_names", style="font-size:1.4em"><%= c.label :department_id%>:</td>
+			<td><%= c.select :department_id, Department.all.order(:department_name).collect {|c| [c.department_name, c.id]}, {:include_blank => "Select Department"}, class: 'categories'%></td>	 
+		</tr>
+
+	</table>
+	
+<% end %>
+<% if !@course.errors.any? %>
+	<%= render 'courses' %>
+<% end %>
+

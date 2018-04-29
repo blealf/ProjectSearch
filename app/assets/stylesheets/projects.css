@@ -1,0 +1,696 @@
+// Place all the styles related to the projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'https://fonts.googleapis.com/css?family=Marcellus';
+@import 'https://fonts.googleapis.com/css?family=Roboto';
+
+/*body {
+    background: #f6f1ed;
+    margin: auto;
+    width: 80%;
+    min-width: 480px;
+    padding-left: 10px;
+    padding-right: 10px;
+}*/
+
+
+/*header{
+    background-color:  #30231d ;
+    margin-top: 5px;
+    max-width: 100%;
+    height: 120px;
+    padding: 10px;
+    
+}*/
+
+
+
+.site-title{
+    margin: auto;
+    width: 80%;
+}
+
+h1{
+    margin: auto;
+    margin-top: 10px;
+    width: 80%;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Lora', serif;
+    
+}
+
+.head_title {
+    text-decoration: none;
+    color: #f6f1ed;
+}
+
+
+
+
+
+/*
+=======================================================================
+For elements on the search screeen (Homepage)
+=======================================================================
+*/
+.search-results{
+    margin: 0 auto;
+    width: 100%;
+
+    //position: absolute;
+    padding-bottom: 50px;
+    margin-bottom: 20px;
+/*    position: relative;*/
+}
+
+/*============Search in the search results page============*/
+
+/*.search-cover{
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+.search-bar, .search-n-btn{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    height: 30px;
+    width: 80%;
+    font-size: 0.8em;
+    padding: 5px;
+    border: solid 1px black;
+    border-radius: 2px;
+
+}
+
+.search-n-btn{
+    background-color: black;
+    color: white;
+    width: 15%;
+    min-width: 90px;
+    font-size: 1em;
+    height: 42px;
+}
+*/
+
+/*.search-n-btn{
+    background-color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    margin-left: 10px;
+    height: 29px;
+    width: 90px;
+    border-radius: 3px;
+    font-size: 1em;
+    
+}*/
+
+
+
+/*===========Divider to hold the search results============*/
+
+.both {
+    float: left;
+    display: block;
+    //width: 100%;
+}
+
+.save_shortlist, .saved_shortlist{
+    float: right;
+    background: #00cc00;
+    color: white;
+/*    border-bottom: 1px solid black;
+    border-right:  1px solid black;
+    border-left:  1px solid black;*/
+    box-shadow:3px 3px 3px black;
+    margin-right: -15px;
+    height: 30px;
+    width: 60px;
+    font-size:1em;
+
+
+}
+
+.saved_shortlist{
+    background: black;
+    padding: 2px;
+    text-align:center;
+    font-size:1.1em;
+}
+
+.my_shortlists{
+    background: #FE9C9A;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 1.2em;
+    color:white;
+
+
+    border-top: 5px solid white;
+    //border-bottom-right-radius:  10px;
+    box-shadow: 3px 3px 5px black;
+}
+
+.filters{
+    background: #FAF8F2;
+    //margin: auto;
+    margin-top: 10px;
+    width: 26%;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid #6a5750;
+    //box-shadow: 3px -3px 10px  #30231d ;
+    max-width: 250px;
+    //min-width: 200px;
+    margin-bottom: 10px;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-shadow: -3px 3px 2px  #30231d;
+    -moz-box-shadow: -3px 3px 2px  #30231d;
+    box-shadow: -3px 3px 2px  #30231d;
+}
+
+.clear_filters{
+    text-decoration: none;
+    display: block;
+    background: #f2f2f2;
+    margin-bottom: 2px;
+    padding: 5px;
+    border: 3px outset #f2f2f2;
+    color:#ff4d4d;
+}
+
+.filter-links{
+    text-decoration: none;
+    display: block;
+    background: #f2f2f2;
+    margin-bottom: 2px;
+    color:#ff4d4d;
+    font-size: 1.1em;
+
+
+/*    text-align:justify;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;*/
+    padding: 5px;
+}
+
+.filter-links:hover{
+    color: #f2f2f2;
+    background: #ff4d4d;
+    
+    font-size: 1.2em;
+}
+
+
+/*.filter-links:hover {
+    color: red;
+
+    text-align:justify;
+    text-overflow: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10px;
+}*/
+
+.sec_2_remove{
+    
+    display: block;
+    width: 100%;
+
+
+}
+
+.remove_filter{
+    background: #f2f2f2;
+    //margin-left: 2px;
+    float: left;
+    width: 73%;
+    margin-bottom: 2px;
+    margin-right: 2%;
+    text-decoration: none;
+    color:#ff4d4d;
+
+    text-align:justify;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.remove_filter_link{
+    background: #f2f2f2;
+    float: left;
+    padding: 5px;
+    width: 8%;
+    max-width: 10px;
+    font-weight: lighter;
+    color:#ff4d4d;
+
+    text-decoration: none;
+    font-family: "Arial";
+}
+
+.indiv_filters{
+    padding-top: 10px;
+}
+
+
+/* ======== .search-float Houses the divider for .search-results-content and search-bar========== */
+
+.search-float {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 68%;
+}
+
+
+.search-results-content{
+    //margin: auto;
+    background: #FAF8F2;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid #6a5750;
+    -webkit-box-shadow: 5px 5px 2px  #30231d;
+    -moz-box-shadow: 5px 5px 2px  #30231d;
+    box-shadow: 5px 5px 2px  #30231d;
+    
+}
+
+.title{
+    margin-top: 7px;
+    padding: 5px;
+    width: 100%;
+}
+
+.title-link{
+    text-decoration: none;
+    color: black;
+}
+
+h3 {
+    font-family: "Verdana";
+    font-size: 1.4em;
+}
+
+.description{
+    margin-top: -30px;
+    //padding: 5px;
+    //padding-left: 0px;
+    text-align:justify;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10px;
+
+}
+
+
+
+#tags{
+    background-color: #f2f2f2;
+    color: black;
+    //margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    //border: 1px solid  #30231d ;
+    padding: 2px;
+    display: inline-block;
+    font-size: 0.8em;
+    text-decoration: none;
+    margin-top: 15px;
+    
+}
+
+.tags_link{
+    text-decoration: none;
+    color: black;
+}
+
+a.tags_link:hover{
+    text-decoration: none;
+    color: red;
+    background-color: white;
+}
+
+
+.url {
+    background-color: #6a5750;
+    color: white;
+    height: 22px;
+    border-radius: 2px;
+    border: 1px solid  #30231d ;
+    //box-shadow: 3px 3px 5px  #30231d ;
+    float: right;
+    margin-bottom: 10px;
+}
+
+
+#select_per_page{
+    width: 100px;
+    height: 30px;
+    float: right;
+    font-family: 'Marcellus', serif;
+    
+    margin-top: -7px;
+    border:none;
+}
+
+.sort_by{
+    font-family: 'Marcellus', serif;
+    //padding: 3px;
+    margin-right: 10px;
+}
+
+/*
+part of the pagination code was gotten from:;
+http://mislav.github.io/will_paginate/pagination.css
+and them modified
+*/
+
+
+.flickr_pagination {
+  text-align: center;
+  padding: 0.3em;
+  background: white;
+  cursor: default; }
+  .flickr_pagination li {display: inline;}
+  .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
+    padding: 0.2em 0.5em; }
+  .flickr_pagination .disabled {
+    color: #aaaaaa; }
+  .flickr_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    color: #ff0084; }
+  .flickr_pagination a {
+    border: 1px solid #dddddd;
+    color: #ff4d4d;
+    text-decoration: none; }
+
+    .flickr_pagination a:hover, .flickr_pagination a:focus {
+      border-color: #003366;
+      background: #ff4d4d;
+      color: white; }
+    .flickr_pagination li.active {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.4em;
+        color: #ff0084;}
+  .flickr_pagination .page_info {
+    color: #aaaaaa;
+    padding-top: 0.8em; }
+  .flickr_pagination .previous_page, .flickr_pagination .next_page {
+    border-width: 2px; }
+  .flickr_pagination .previous_page {
+    margin-right: 1em; }
+  .flickr_pagination .next_page {
+    margin-left: 1em; }
+/*
+===============================================================================
+        ERRORS
+===============================================================================
+*/
+.not_found{
+    color: blue;
+}
+
+.error-alert{
+    color: red;
+    font-weight: 900px;
+}
+
+#title_error{
+    margin-left: 10px;
+    min-width: 500px;
+    border-radius: 0px;
+    height: 20px;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    border: 2px solid red;
+}
+
+#description_error{
+    background: #ffcccc;
+    margin-left: 10px;
+    min-height: 300px;
+    min-width: 500px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    border: 2px solid red;
+    
+}
+
+/*============================================================================*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+=============================================================================
+                    SHOWING PROJECTS (onclick)
+=============================================================================*/
+.back_button {
+    padding: 10px;
+    background: black;
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.show_project{
+    margin: 0 auto;
+    background: white;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+
+}
+
+.show_title {
+    color:black;
+    text-align: center;
+}
+
+.show_description {
+    text-align: justify;
+    font-family: font-family: 'Roboto', sans-serif; 
+    font-size: 1.2em;    
+}
+
+
+.tags_wrap{
+    background-color: #f2f2f2;
+    color: black;
+    //margin-left: 5px;
+    margin-bottom: 5px;
+    //border: 1px solid  #30231d ;
+    padding: 5px;
+    display: inline-block;
+    font-size: 0.9em;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.tags_wrap:hover{
+    font-style: italic;
+}
+
+.read_more {
+    text-decoration: none;
+    background: #FE9C9A;
+    color: white;
+    padding: 10px;
+
+}
+
+.save_apply{
+    display: block;
+    height: 80px;
+
+}
+
+.s_apply_button, .s_applied{
+
+    text-decoration: none;
+    background: green;
+    color: white;
+    padding: 10px;
+    display: inline;
+    float: right;
+    margin-right: 10px;
+    font-weight: bolder;
+}
+.s_applied{
+    background: #FE9C9A;
+    color: black;
+}
+/*
+==============================================================================
+        FORM FOR CREATING AND EDITING PROJECTS
+==============================================================================
+
+******************************************************************************
+*/
+
+table {
+    border: collapse;
+}
+
+.new_edit_project {
+    padding: 10px;
+}
+
+.field_names{
+    vertical-align: center; 
+    font-size: 1.2em;
+    width: 200px;   
+}
+
+#title_edit, #url_edit{
+    margin-left: 10px;
+    min-width: 500px;
+    border-radius: 0px;
+    height: 20px;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+
+}
+
+#description_edit, #tags_edit {
+    background: white;
+    margin-left: 10px;
+    min-height: 300px;
+    min-width: 500px;
+    font-family: 'Verdana';
+    font-size: 0.9em;
+    text-align: justify;
+    border: 1px solid #30231d;
+    padding: 10px;
+}
+
+#tags_edit{
+    min-height: 50px;
+}
+
+td {
+    width: 100px;
+}
+
+.save_div{
+    margin: auto;
+    width: 200px;
+    }
+
+#save_button {
+    background-color: #00b300;
+    margin: auto;
+    margin-left: 10px;
+    color: white;
+    width: 100px;
+    font-family: 'Lora', serif;
+    font-size: 1em;
+    font-weight: 900;
+    padding: 5px;
+    border: 3px outset green;
+}
+
+.check_box{
+    border: 1px solid black;
+}
+
+.categories{
+    margin: 10px;
+    height: 30px;
+    width: 350px;
+}
+
+.courses_field{
+    margin-left: 10px;
+    overflow-y: scroll; 
+    height: 200px;
+    border: 1px solid #30231d;
+    padding: 10px;
+}
+
+
+/*=====================================================================
+=======================================================================*/
+@media only screen and(max-width: 350px) and (orientation: portrait){
+    
+/*    body {
+        width: 100%
+}*/
+    #description_edit {
+    min-height: 200px;
+    min-width: 200px;
+}
+
+.front-video{
+    display: none;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

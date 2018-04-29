@@ -1,0 +1,22 @@
+<div class="comment_inner_box">
+ <%# @project_application.applicationreplies.each do |comment| %>
+
+	 <div>
+		<% if current_student.present? %>
+			<% person = current_student.full_name.titleize %>
+		<% elsif current_staff.present?%>
+			<% person = current_staff.first_name.capitalize + " " + current_staff.last_name.capitalize %>
+		<% end %>
+	 	<% if applicationreply.commenter == person %>
+	 		<div class='commenter2'> <%= applicationreply.commenter.to_s + ", "  %> <span style="font-size:0.8em"> <%= applicationreply.created_at.to_date %> at <%= applicationreply.created_at.strftime("%H:%M") %></span></div>
+		    <div class='comment'> <%= simple_format(applicationreply.note)%></div>
+		    <%#= comment.id %>
+	 	<% else %>
+	 		<div class='commenter'> <%= applicationreply.commenter.to_s + ", "  %> <span style="font-size:0.8em"> <%= applicationreply.created_at.to_date %> at <%= applicationreply.created_at.strftime("%H:%M") %></span></div>
+		    <div class='comment'> <%= simple_format(applicationreply.note)%></div>
+		    <%#= comment.id %>
+	 	<% end %>
+	 	</div>
+
+<%# end %>
+</div>

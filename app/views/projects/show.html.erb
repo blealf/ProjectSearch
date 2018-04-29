@@ -1,9 +1,68 @@
-<h1>Projects#show</h1>
-<p class="show_project"><%= @project.title %></p>
-<p class="show_project"><%= simple_format(@project.description) %></p>
-<p class="show_project"><%= @project.tags %></p>
-<p class="show_project"><a href="<%= @project.url %>">Read More</a></p>
+<div style="margin-top:10px;"></div>
+<% if current_staff.present? %>
+	<%= link_to 'Back', current_staff, :class => 'back_button' %>
+<% end %>
 
-<%= link_to 'Back', projects_path %> |
-<%= link_to 'Edit', edit_project_path(@project) %>
-<p>Find me in app/views/projects/show.html.erb</p>
+<div class="show_project">
+	<h2 class="show_title"><%= @project.title %></h2>
+	<p class="show_description"><%= simple_format(@project.description, :class => 'show_description')%></p>
+	<hr>
+	Tags:
+	<% @project_tags.each do |pt|%>
+		<% tagstring = pt.tag_name.to_s.downcase %>
+	    <%= link_to tagstring, {:controller => "projects", :q => pt.tag_name.to_s},  :class => 'tags_wrap'%>
+	<% end %>
+	<% @project.tags.split(",").each do |t| %>
+		<% tagstring = t.to_s.downcase %>
+	    <%= link_to tagstring, {:controller => "projects", :q => t.to_s},  :class => 'tags_wrap'%>
+	<% end %>
+	<% if !@project.url.blank? %>
+		<p class="url_"><a href="<%= @project.url %>" target="_blank" class="read_more">Read More</a></p>
+	<% end %>
+
+<div class="save_apply">
+	<% s= "" %>
+	<% a= "" %>
+	<% if current_student.present? %>
+
+
+		<% @stushort.each do |ss| %>
+			<% if ss.project_id == @project.id %>
+				 <% a = "Shortlisted" %>
+			<% end %>
+		<% end %>
+
+		<% if a == "Shortlisted" %>
+			<div class='s_applied'><%= a %></div>
+		<% else %>
+			<%= form_for ([@project, @project.shortlists.build]) do |p|%>
+				<%= p.submit "save", class: 's_apply_button' %> 
+			<%end%>
+		<%end%>
+
+		<% @studentapplications.each do |sap| %>
+			<% if sap.project_id == @project.id %>
+				<% s = "Applied" %>
+			<% end %>
+		<% end %>
+
+		<% if s == "Applied" %>
+			<div class='s_applied'> <%= s %></div>
+		<% else %>
+			<%= form_for ([@project, @project.project_applications.build]) do |p|%>
+				<%= p.submit "Apply", class: 's_apply_button', data: { confirm: "Send Application?" } %> 
+			<% end %>
+		<% end %>
+	<%end%>
+
+</div>
+
+
+
+
+
+
+</div>
+<% if current_staff.present? %>
+	<%= link_to 'Back', current_staff, :class => 'back_button' %>
+<% end %>

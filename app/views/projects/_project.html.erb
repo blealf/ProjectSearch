@@ -1,27 +1,69 @@
+
+<div class="search-float both">
+<div style="padding:5px; margin-bottom: 25px; //padding-bottom: 100px;">
+<div style="float:right;">
+	<span class="sort_by"> Projects per page </span>  <%= select_tag :per_page, options_for_select([5,10,20,50], params[:per_page].to_i),
+   :onchange => "if(this.value){window.location='?per_page='+this.value;}", :id => 'select_per_page' %>
+</div></div>
+
 <% if !@projects.empty? %>
-<% @projects.each do |p| %>
+	<% @projects.each do |p| %>
 
-	
-	<div class="search-results-content">
-	    <h3 class="title"> <%= link_to p.title, p, class: "title-link"%> </h3>
-	    <div class="description"><%= p.description %> </div>
-	    <div class="tags"> <% tags = p.tags.split(",") %> Tags: 
-	    <% tags.each do |t| %>
-	        
+		<div class="search-results-content">
 
-	   
-	        <div id="tags"><%# t %>
-	        	<% tg = t.to_s %>
-	        	<%= link_to tg, {:controller => "projects", :q => t.to_s},  :class => 'tags_link'%>
-	        
-	        </div> 
-	    <% end %>
-	    </div>
-	</div>
-<% end %>
+
+			<% a= "" %>
+			<% if current_student.present? %>
+
+				<% @stushort.each do |ss| %>
+					<% if ss.project_id == p.id %>
+						 <% a = "saved" %>
+					<% end %>
+				<% end %>
+
+				<% if a == "saved" %>
+					<div class='saved_shortlist'><%= a %></div>
+				<% else %>
+					<%= form_for ([p, p.shortlists.build]) do |pr|%>
+						<%= pr.submit "save", :class => 'save_shortlist'%>
+					<%end%>
+				<% end %>
+			<% end %>
+		    
+
+		    <h3 class="title"> <%= link_to p.title.capitalize, p, class: "title-link"%> </h3>
+		    <div class="description"><%= p.description.capitalize %> </div>
+		    <div class="tags">  Tags:
+			
+			<% p.project_tags.each do |pt|%>
+				<div id="tags">
+				 	<% tagstring = pt.tag_name.to_s.downcase %>
+			        <%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+				</div>
+			<% end %>
+
+		    <% tags = p.tags.split(",") %> 
+		    <% tags.each do |t| %>
+		        <div id="tags"><%# t %>
+		        	<% tagstring = t.to_s.downcase %>
+		        	<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+		        
+		        </div> 
+		    <% end %>
+		    </div style="margin-top:5px;">
+		    <div style="font-size:0.7em">Project proposal by: 
+		    <% if !p.staff.profile.blank? %>
+		    	<%=link_to p.staff.first_name[0].upcase + ". " + p.staff.last_name.capitalize, "#{p.staff.profile}", target: "_blank" %>
+			<% else %>
+				<%= p.staff.first_name[0].upcase + ". " + p.staff.last_name.capitalize %>
+		    <% end %>
+		    </div>	
+		    
+		</div>
+	<% end %>
 <% elsif @projects.empty? %>
 	<div class="search-results-content">
-	    <p class="not_found"> Search for <strong style="color:red"><em><%= params[:q].to_s %> </em></strong> not found </p>  
+	    <p class="not_found"> Search for <strong style="color:red"><em>"<%= params[:q].to_s %>" </em></strong> not found </p>  
 	    <p> Try with another query keyword </p> 
 	    <p> or search by the following:</p>
 
@@ -39,7 +81,22 @@
 	</div>
 
 		<p>Optionally, you can view <%= link_to "All Projects", {:controller => "projects", :q => ""},  :class => 'suggestions_links'%></p>
+		</div>
 <% end %>
 
 
- <%= will_paginate(@search.results) %>
+
+	<%= will_paginate @projects, class: 'flickr_pagination'%>
+
+
+<%#The pagination: http://stackoverflow.com/questions/1281093/rails-showing-10-or-20-or-50-results-per-page-with-will-paginate-how-to %>
+<div style="margin-top: 5px;">
+	<div style="float:right; padding:5px;">
+		<span class="sort_by"> Projects per page </span>  <%= select_tag :per_page, options_for_select([5,10,20,50], params[:per_page].to_i),
+       :onchange => "if(this.value){window.location='?per_page='+this.value;}", :id => 'select_per_page' %>
+    </div>
+</div>
+
+
+ 
+ </div>

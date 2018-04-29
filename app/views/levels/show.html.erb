@@ -1,0 +1,26 @@
+<div class="show_staff_projects">
+      
+    <% @projects.each do |rec| %>
+        <div class="search-results-content">
+      		<h3 class="title"> <%= link_to rec.title, rec, class: "title-link"%> </h3>
+      		<div class="description"><%= rec.description %> </div>
+      		<div class="tags">  Tags:
+    
+        		<% rec.project_tags.each do |pt|%>
+          		<div id="tags">
+            		<% tagstring = pt.tag_name.to_s.downcase %>
+                	<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+          		</div>
+        		<% end %>
+
+      			<% tags = rec.tags.split(",") %> 
+      			<% tags.each do |t| %>
+          			<div id="tags"><%# t %>
+            			<% tagstring = t.to_s.downcase %>
+            			<%= link_to tagstring, {:controller => "projects", :q => tagstring},  :class => 'tags_link'%>
+          			</div> 
+      			<% end %>
+      		</div>
+  		</div>
+	<% end %>
+</div>

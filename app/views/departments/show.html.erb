@@ -1,0 +1,11 @@
+<div>
+	<h2 style="text-align:center;">Browse By Courses</h2>
+	<% courses = @courses.sort%>
+	<% courses.each do |c| %>
+		<%= link_to c.course_name, c %> 
+		<% if current_admin.present? %>
+		<%= link_to "Edit", edit_course_path(c), id: 'edit-project'%>
+		<% end %><br>
+	<% end %>
+	<p>Find me in app/views/courses/index.html.erb</p>
+</div>

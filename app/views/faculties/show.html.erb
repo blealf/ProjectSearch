@@ -1,0 +1,6 @@
+<% @departments.each do |department| %>
+	<%= link_to department.department_name, department %> 
+	<% if current_admin.present? %>
+	<%= link_to 'Delete', department, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%>
+	<% end %><br>
+<% end %>

@@ -1,0 +1,32 @@
+
+
+  Application for:
+<%# Project.where(id: @project_application.project_id).find_each do |p| %>
+
+  <h2 class="suggestion_title"><%= @project_application.project.title %></h2>
+  <div class="desc_div">
+    <%= simple_format(@project_application.project.description, class: "suggestion_description") %>
+  </div>
+<%# end %>
+
+<%#= button_tag  "Replies", id: "comment_toggle" %>
+
+<div class="comment_box_show" style="//display:none" >
+<hr>
+
+  <%#= render 'reply' %>
+  <div class="replies" >
+    <%= render @project_application.applicationreplies %>
+  </div>
+  <% if current_student.present? || current_staff.present?%>
+  <div class="input_comment_div" >
+
+    <%= form_for([@project_application, @project_application.applicationreplies.build], remote: true) do |f| %>
+
+      <p><%= f.label "send a reply" %> </p>
+      <%= f.text_area :note, class: 'input_comment' %>
+      <div class="save_div"><%= f.submit "Send", id: 'save_button' %></div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

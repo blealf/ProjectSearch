@@ -1,0 +1,66 @@
+<%= form_for(@student) do |student| %>
+	  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student details from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+	<tr>
+		<td class="field_names"><%= student.label :full_name %></td>
+		<td><%= student.text_field :full_name, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :pnumber %></td>
+		<td><p style="margin-left:10px;color:brown">Include the preceding 'p' for the pnumber</p> <%= student.text_field :pnumber, id: 'title_edit', placeholder: "e.g. p00000000" %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :email %></td>
+		<td><%= student.text_field :email, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :password %></td>
+		<td><%= student.password_field :password, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :password_confirmation %></td>
+		<td><%= student.password_field :password_confirmation, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :course_id %> <br></td>
+		<td><%= student.select :course_id, Course.all.order(:course_name).collect {|c| [c.course_name, c.id]}, {:include_blank => "Select Course"}, class: 'categories' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label :level_id%> <br></td>
+		<td><%= student.select :level_id, Level.all[0..1].collect {|c| [c.level_name, c.id]}, {:include_blank => "Select Level"}, class: 'categories' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= student.label "Major Interests"%> </td>
+		<td> <div class="courses_field" style="margin-bottom:10px"> <%= student.collection_check_boxes :project_tag_ids, ProjectTag.all.order(:tag_name), :id, :tag_name do |pt| %>
+			<div>
+		      <%= pt.check_box class: 'check_box'%>
+		      <%= pt.label %>
+    		</div>
+  		<% end %>
+  		</div>
+		</td>
+	</tr>
+	<tr style="margin-top:10px">
+		<td class="field_names"><%= student.label "Additional Interests" %></td>
+		<td> <p style="margin-left:10px;"> Enter additional interests keywords below separated by commas </p></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><%= student.text_area :additional_interest, id: 'tags_edit', placeholder: "e.g. social media, robotics"  %></td>
+	</tr>
+
+</table>
+<div class="save_div"><%= student.submit 'Save', id: 'save_button' %></div>
+  <div>
+
+<% end %>

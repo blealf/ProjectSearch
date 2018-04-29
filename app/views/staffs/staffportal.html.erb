@@ -1,0 +1,23 @@
+<h1>Staff#index</h1>
+
+<% @staffs.each do |staff| %>
+<table>
+	<tr>
+		<td><%= staff.first_name %></td>
+	</tr>
+	<tr>
+		<td><%= staff.last_name %></td>
+	</tr>
+	<tr>
+		<td><%= staff.email %></td>
+	</tr>
+	<tr>
+		<td><%= staff.office_tel %></td>
+	</tr>
+
+</table>
+<%= link_to "Show", staff %>
+<% end %>
+<%= link_to "New Staff", new_staff_path %> |
+<%= link_to "Signup", signup_path %> | <%= link_to "Login", login_path %>
+<p>Find me in app/views/staff/index.html.erb</p>

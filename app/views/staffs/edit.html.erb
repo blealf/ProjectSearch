@@ -1,2 +1,35 @@
-<h1>Staff#edit</h1>
-<p>Find me in app/views/staff/edit.html.erb</p>
+<h2>Staff signup form</h2>
+
+<%= form_for(@staff) do |staff| %>
+	  <% if @staff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff details from being saved:</h2>
+
+      <ul>
+      <% @staff.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+	<tr>
+		<td class="field_names"><%= staff.label :email %></td>
+		<td><%= staff.text_field :email, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= staff.label :office_tel %></td>
+		<td><%= staff.text_field :office_tel, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td class="field_names"><%= staff.label "link to online profile" %></td>
+		<td><%= staff.text_field :profile, id: 'title_edit' %></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+</table>
+<div class="save_div"><%= staff.submit 'Save', id: 'save_button' %></div>
+<% end %>
+
+

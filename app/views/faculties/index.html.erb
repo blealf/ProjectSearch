@@ -1,0 +1,9 @@
+<h1>Faculties#index</h1>
+<% @faculties.each do |faculty| %>
+	<%= link_to faculty.faculty_name, faculty %> 
+	<% if current_admin.present? %>
+	<%= link_to 'Delete', faculty, method: :delete, data: { confirm: "Are you sure" }, id: 'delete-project'%>
+	<% end %><br>
+<% end %>
+
+<p>Find me in app/views/faculties/index.html.erb</p>

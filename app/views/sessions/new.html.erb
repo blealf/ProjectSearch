@@ -1,19 +1,28 @@
-<h1>Sessions#new</h1>
-<h1>Log in</h1>
-
 <div>
-  <div>
-    <%= form_for(:session, url: login_path) do |f| %>
+  <div class="login_form">
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+	<%= form_for(:session, url: login_path) do |f| %>
+	    <table style="margin:0 auto;width:200px;margin-bottom:10px">
+	    	<tr>
+	    		<td></td>
+	    		<td><h2 style="text-align:center">Login</h2></td>
+	    	</tr>
+			<tr>
+	      		<td class="login_labels"><%= f.label "pnumber/username" %></td>
+	      		<td><%= f.text_field :pnumber, id: 'login_fields' ,  :placeholder => 'Enter pnumber'%></td>
+	      	</tr>
+	      	<tr>
+	      		<td class="login_labels"><%= f.label :password %></td>
+	      		<td ><%= f.password_field :password, id: 'login_fields'  %></td>
+	      	</tr> 
+	      	<tr>
+	      		<td></td>
+	      		<td>
+	      			<div class="login_button_div"><%= f.submit "Log in!", id: 'login_button' %></div>
+	      		</td>
+	      	</tr>
+		</table>
+		
     <% end %>
-
-    
   </div>
-</div>app/views/sessions/new.html.erb</p>
+</div>
