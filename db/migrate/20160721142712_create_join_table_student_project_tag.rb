@@ -1,4 +1,4 @@
-class CreateJoinTableStudentProjectTag < ActiveRecord::Migration
+class CreateJoinTableStudentProjectTag < ActiveRecord::Migration[4.2]
   def change
     create_join_table :students, :project_tags do |t|
       # t.index [:student_id, :project_tag_id]

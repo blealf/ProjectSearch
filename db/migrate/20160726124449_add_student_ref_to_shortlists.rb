@@ -1,4 +1,4 @@
-class AddStudentRefToShortlists < ActiveRecord::Migration
+class AddStudentRefToShortlists < ActiveRecord::Migration[4.2]
   def change
     add_reference :shortlists, :student, index: true, foreign_key: true
   end

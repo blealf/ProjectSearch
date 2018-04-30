@@ -1,4 +1,4 @@
-class CreateSuggestionreplies < ActiveRecord::Migration
+class CreateSuggestionreplies < ActiveRecord::Migration[4.2]
   def change
     create_table :suggestionreplies do |t|
       t.text :note

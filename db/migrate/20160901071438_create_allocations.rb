@@ -1,4 +1,4 @@
-class CreateAllocations < ActiveRecord::Migration
+class CreateAllocations < ActiveRecord::Migration[4.2]
   def change
     create_table :allocations do |t|
       t.references :student, index: true, foreign_key: true

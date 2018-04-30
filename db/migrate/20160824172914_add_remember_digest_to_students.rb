@@ -1,4 +1,4 @@
-class AddRememberDigestToStudents < ActiveRecord::Migration
+class AddRememberDigestToStudents < ActiveRecord::Migration[4.2]
   def change
     add_column :students, :remember_digest, :string
   end

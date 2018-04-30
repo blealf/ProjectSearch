@@ -1,4 +1,4 @@
-class CreateJoinTableProjectCourse < ActiveRecord::Migration
+class CreateJoinTableProjectCourse < ActiveRecord::Migration[4.2]
   def change
     create_join_table :projects, :courses do |t|
     	#t.references :project

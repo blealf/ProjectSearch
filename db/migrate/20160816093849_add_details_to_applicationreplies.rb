@@ -1,4 +1,4 @@
-class AddDetailsToApplicationreplies < ActiveRecord::Migration
+class AddDetailsToApplicationreplies < ActiveRecord::Migration[4.2]
   def change
     add_column :applicationreplies, :commenter, :string
   end

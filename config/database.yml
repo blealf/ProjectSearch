@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: student_project_one
   pool: 5
-  username: postgres
+  username: blealf
   password: blealf92
 
 test:
@@ -11,5 +11,5 @@ test:
   encoding: unicode
   database: student_project_one
   pool: 5
-  username: postgres
+  username: blealf
   password: blealf92
