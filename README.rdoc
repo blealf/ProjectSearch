@@ -24,6 +24,7 @@ make sure postgresql is installed
 
 create a database file with the following and add the username and password
 
+#------------------------------------------------------
 development:
   adapter: postgresql
   encoding: unicode
@@ -39,6 +40,8 @@ test:
   pool: 5
   username: 
   password: 
+  
+#------------------------------------------------------
 
 =run the folloowing commands in order:
 
