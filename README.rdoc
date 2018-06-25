@@ -21,7 +21,7 @@ make sure postgresql is installed
 
 create a database file with the following and add the username and password
 
-<pre>
+<pre><code>
 development:
   adapter: postgresql
   encoding: unicode
@@ -38,7 +38,7 @@ test:
   username: 
   password: 
   
-</pre>
+<pre><code>
 
 =run the following commands in order:
 
