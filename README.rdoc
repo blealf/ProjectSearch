@@ -21,24 +21,23 @@ make sure postgresql is installed
 
 create a database file with the following and add the username and password
 
-<pre><code>
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: student_project_one
-  pool: 5
-  username: 
-  password: 
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: student_project_one
-  pool: 5
-  username: 
-  password: 
-  
-<pre><code>
+  development:
+    adapter: postgresql
+    encoding: unicode
+    database: student_project_one
+    pool: 5
+    username: 
+    password: 
+
+  test:
+    adapter: postgresql
+    encoding: unicode
+    database: student_project_one
+    pool: 5
+    username: 
+    password: 
+
 
 =run the following commands in order:
 
