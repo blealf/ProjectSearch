@@ -15,11 +15,15 @@ Deveoped using:
 
 * Database: Postgresql
 
+
+== To test the application
+
 Requires ruby 2.5 and rails 5
 make sure to have java installed
 make sure postgresql is installed
 
 create a database file with the following and add the username and password
+
 development:
   adapter: postgresql
   encoding: unicode
