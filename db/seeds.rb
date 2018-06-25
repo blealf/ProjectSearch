@@ -137,104 +137,104 @@ Allocation.create!([
   {student_id: 1, staff_id: 3, supervision_type_id: 1}
 ])
 
-Course::HABTM_Projects.create!([
-  {project_id: 2, course_id: 2},
-  {project_id: 3, course_id: 2},
-  {project_id: 4, course_id: 4},
-  {project_id: 4, course_id: 2},
-  {project_id: 5, course_id: 4},
-  {project_id: 8, course_id: 4},
-  {project_id: 8, course_id: 2},
-  {project_id: 11, course_id: 13}
-])
-Project::HABTM_Courses.create!([
-  {project_id: 2, course_id: 2},
-  {project_id: 3, course_id: 2},
-  {project_id: 4, course_id: 4},
-  {project_id: 4, course_id: 2},
-  {project_id: 5, course_id: 4},
-  {project_id: 8, course_id: 4},
-  {project_id: 8, course_id: 2},
-  {project_id: 11, course_id: 13}
-])
-Project::HABTM_ProjectTags.create!([
-  {project_id: 2, project_tag_id: 20},
-  {project_id: 2, project_tag_id: 11},
-  {project_id: 3, project_tag_id: 19},
-  {project_id: 3, project_tag_id: 13},
-  {project_id: 3, project_tag_id: 14},
-  {project_id: 3, project_tag_id: 3},
-  {project_id: 3, project_tag_id: 1},
-  {project_id: 4, project_tag_id: 22},
-  {project_id: 4, project_tag_id: 7},
-  {project_id: 5, project_tag_id: 22},
-  {project_id: 5, project_tag_id: 1},
-  {project_id: 5, project_tag_id: 21},
-  {project_id: 5, project_tag_id: 5},
-  {project_id: 2, project_tag_id: 15},
-  {project_id: 2, project_tag_id: 14},
-  {project_id: 2, project_tag_id: 3},
-  {project_id: 2, project_tag_id: 6},
-  {project_id: 6, project_tag_id: 20},
-  {project_id: 6, project_tag_id: 15},
-  {project_id: 6, project_tag_id: 3},
-  {project_id: 7, project_tag_id: 14},
-  {project_id: 7, project_tag_id: 3},
-  {project_id: 7, project_tag_id: 4},
-  {project_id: 8, project_tag_id: 11},
-  {project_id: 8, project_tag_id: 14},
-  {project_id: 8, project_tag_id: 4},
-  {project_id: 8, project_tag_id: 1},
-  {project_id: 8, project_tag_id: 6},
-  {project_id: 8, project_tag_id: 5},
-  {project_id: 11, project_tag_id: 21}
-])
+# Course::HABTM_Projects.create!([
+#   {project_id: 2, course_id: 2},
+#   {project_id: 3, course_id: 2},
+#   {project_id: 4, course_id: 4},
+#   {project_id: 4, course_id: 2},
+#   {project_id: 5, course_id: 4},
+#   {project_id: 8, course_id: 4},
+#   {project_id: 8, course_id: 2},
+#   {project_id: 11, course_id: 13}
+# ])
+# Project::HABTM_Courses.create!([
+#   {project_id: 2, course_id: 2},
+#   {project_id: 3, course_id: 2},
+#   {project_id: 4, course_id: 4},
+#   {project_id: 4, course_id: 2},
+#   {project_id: 5, course_id: 4},
+#   {project_id: 8, course_id: 4},
+#   {project_id: 8, course_id: 2},
+#   {project_id: 11, course_id: 13}
+# ])
+# Project::HABTM_ProjectTags.create!([
+#   {project_id: 2, project_tag_id: 20},
+#   {project_id: 2, project_tag_id: 11},
+#   {project_id: 3, project_tag_id: 19},
+#   {project_id: 3, project_tag_id: 13},
+#   {project_id: 3, project_tag_id: 14},
+#   {project_id: 3, project_tag_id: 3},
+#   {project_id: 3, project_tag_id: 1},
+#   {project_id: 4, project_tag_id: 22},
+#   {project_id: 4, project_tag_id: 7},
+#   {project_id: 5, project_tag_id: 22},
+#   {project_id: 5, project_tag_id: 1},
+#   {project_id: 5, project_tag_id: 21},
+#   {project_id: 5, project_tag_id: 5},
+#   {project_id: 2, project_tag_id: 15},
+#   {project_id: 2, project_tag_id: 14},
+#   {project_id: 2, project_tag_id: 3},
+#   {project_id: 2, project_tag_id: 6},
+#   {project_id: 6, project_tag_id: 20},
+#   {project_id: 6, project_tag_id: 15},
+#   {project_id: 6, project_tag_id: 3},
+#   {project_id: 7, project_tag_id: 14},
+#   {project_id: 7, project_tag_id: 3},
+#   {project_id: 7, project_tag_id: 4},
+#   {project_id: 8, project_tag_id: 11},
+#   {project_id: 8, project_tag_id: 14},
+#   {project_id: 8, project_tag_id: 4},
+#   {project_id: 8, project_tag_id: 1},
+#   {project_id: 8, project_tag_id: 6},
+#   {project_id: 8, project_tag_id: 5},
+#   {project_id: 11, project_tag_id: 21}
+# ])
 
 
-ProjectTag::HABTM_Projects.create!([
-  {project_id: 2, project_tag_id: 20},
-  {project_id: 2, project_tag_id: 11},
-  {project_id: 3, project_tag_id: 19},
-  {project_id: 3, project_tag_id: 13},
-  {project_id: 3, project_tag_id: 14},
-  {project_id: 3, project_tag_id: 3},
-  {project_id: 3, project_tag_id: 1},
-  {project_id: 4, project_tag_id: 22},
-  {project_id: 4, project_tag_id: 7},
-  {project_id: 5, project_tag_id: 22},
-  {project_id: 5, project_tag_id: 1},
-  {project_id: 5, project_tag_id: 21},
-  {project_id: 5, project_tag_id: 5},
-  {project_id: 2, project_tag_id: 15},
-  {project_id: 2, project_tag_id: 14},
-  {project_id: 2, project_tag_id: 3},
-  {project_id: 2, project_tag_id: 6},
-  {project_id: 6, project_tag_id: 20},
-  {project_id: 6, project_tag_id: 15},
-  {project_id: 6, project_tag_id: 3},
-  {project_id: 7, project_tag_id: 14},
-  {project_id: 7, project_tag_id: 3},
-  {project_id: 7, project_tag_id: 4},
-  {project_id: 8, project_tag_id: 11},
-  {project_id: 8, project_tag_id: 14},
-  {project_id: 8, project_tag_id: 4},
-  {project_id: 8, project_tag_id: 1},
-  {project_id: 8, project_tag_id: 6},
-  {project_id: 8, project_tag_id: 5},
-  {project_id: 11, project_tag_id: 21}
-])
-ProjectTag::HABTM_Students.create!([
-  {student_id: 1, project_tag_id: 1},
-  {student_id: 2, project_tag_id: 22},
-  {student_id: 2, project_tag_id: 16},
-  {student_id: 2, project_tag_id: 10},
-  {student_id: 3, project_tag_id: 11}
-])
+# ProjectTag::HABTM_Projects.create!([
+#   {project_id: 2, project_tag_id: 20},
+#   {project_id: 2, project_tag_id: 11},
+#   {project_id: 3, project_tag_id: 19},
+#   {project_id: 3, project_tag_id: 13},
+#   {project_id: 3, project_tag_id: 14},
+#   {project_id: 3, project_tag_id: 3},
+#   {project_id: 3, project_tag_id: 1},
+#   {project_id: 4, project_tag_id: 22},
+#   {project_id: 4, project_tag_id: 7},
+#   {project_id: 5, project_tag_id: 22},
+#   {project_id: 5, project_tag_id: 1},
+#   {project_id: 5, project_tag_id: 21},
+#   {project_id: 5, project_tag_id: 5},
+#   {project_id: 2, project_tag_id: 15},
+#   {project_id: 2, project_tag_id: 14},
+#   {project_id: 2, project_tag_id: 3},
+#   {project_id: 2, project_tag_id: 6},
+#   {project_id: 6, project_tag_id: 20},
+#   {project_id: 6, project_tag_id: 15},
+#   {project_id: 6, project_tag_id: 3},
+#   {project_id: 7, project_tag_id: 14},
+#   {project_id: 7, project_tag_id: 3},
+#   {project_id: 7, project_tag_id: 4},
+#   {project_id: 8, project_tag_id: 11},
+#   {project_id: 8, project_tag_id: 14},
+#   {project_id: 8, project_tag_id: 4},
+#   {project_id: 8, project_tag_id: 1},
+#   {project_id: 8, project_tag_id: 6},
+#   {project_id: 8, project_tag_id: 5},
+#   {project_id: 11, project_tag_id: 21}
+# ])
+# ProjectTag::HABTM_Students.create!([
+#   {student_id: 1, project_tag_id: 1},
+#   {student_id: 2, project_tag_id: 22},
+#   {student_id: 2, project_tag_id: 16},
+#   {student_id: 2, project_tag_id: 10},
+#   {student_id: 3, project_tag_id: 11}
+# ])
 
-Student::HABTM_ProjectTags.create!([
-  {student_id: 1, project_tag_id: 1},
-  {student_id: 2, project_tag_id: 22},
-  {student_id: 2, project_tag_id: 16},
-  {student_id: 2, project_tag_id: 10},
-  {student_id: 3, project_tag_id: 11}
-])
+# Student::HABTM_ProjectTags.create!([
+#   {student_id: 1, project_tag_id: 1},
+#   {student_id: 2, project_tag_id: 22},
+#   {student_id: 2, project_tag_id: 16},
+#   {student_id: 2, project_tag_id: 10},
+#   {student_id: 3, project_tag_id: 11}
+# ])

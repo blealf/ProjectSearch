@@ -1,0 +1,27 @@
+bundle install
+go to database.yml and change the username and password to your db
+rake db:create
+rake db:migrate
+rake db:seed
+
+Requires ruby 2.5 and rails 5
+make sure to have java installed
+make sure postgresql is installed
+
+
+create a database file with the following and add the username and password
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: student_project_one
+  pool: 5
+  username: 
+  password: 
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: student_project_one
+  pool: 5
+  username: 
+  password: 
