@@ -41,17 +41,16 @@ create a database.yml file /config directory with the following and add the user
 
 =run the following commands in order:
 
-bundle install
-go to database.yml and change the username and password to your db
-rake db:create
-rake db:migrate
-rake db:seed
+  bundle install
+  rake db:create
+  rake db:migrate
+  rake db:seed
 
-rails s
-rake sunspot:solr:start 
-rake sunspot:reindex
+  rails s
+  rake sunspot:solr:start 
+  rake sunspot:reindex
 
-or for windows
-budle exec rake sunspot:solr:run
-budle exec rake sunspot:reindex
+  or for windows =>
+  budle exec rake sunspot:solr:run
+  budle exec rake sunspot:reindex
 
