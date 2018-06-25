@@ -1,8 +1,5 @@
 == PROJECT SEARCH
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Deveoped using:
 
 * Ruby version 2.5 
@@ -24,7 +21,7 @@ make sure postgresql is installed
 
 create a database file with the following and add the username and password
 
-#------------------------------------------------------
+<pre>
 development:
   adapter: postgresql
   encoding: unicode
@@ -41,9 +38,9 @@ test:
   username: 
   password: 
   
-#------------------------------------------------------
+</pre>
 
-=run the folloowing commands in order:
+=run the following commands in order:
 
 bundle install
 go to database.yml and change the username and password to your db
